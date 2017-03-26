@@ -1,1 +1,16 @@
 /* YOUR CUSTOM STYLES */
+form.form-inline {
+	position: absolute;
+	top: 200px;
+	left: 500px;
+}
+#password-block {
+	position: absolute;
+	top: 80px;
+	left: 0px;
+}
+#login-button {
+	position: absolute;
+	top: 140px;
+	left: 60px;
+}
