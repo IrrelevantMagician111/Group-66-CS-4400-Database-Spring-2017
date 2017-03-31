@@ -19,27 +19,27 @@
 </head>
 
 <body>
+<div class="center-container">
+	<form action ="http://localhost/CS_4400_Database_Project_php_folder/login.php"  method = "post" class="">
 
-<form action ="http://localhost/CS_4400_Database_Project_php_folder/login.php"  method = "post" class="form-inline">
+		<div class="md-form form-group" id ="username-block">
+			<i class="fa fa-user-circle prefix" aria-hidden="true"></i>
+			<input pattern="^[_A-z0-9]{1,}$" type="text" name="username" id="form91" class="form-control">
+			<label for="form91" data-error="wrong">Type your username</label>
+		</div>
 
-    <div class="md-form form-group" id ="username-block">
-        <i class="fa fa-user-circle prefix" aria-hidden="true"></i>
-        <input type="text" name="username" id="form91" class="form-control validate">
-        <label for="form91" data-error="wrong" data-success="right">Type your username</label>
-    </div>
+		<div class="md-form form-group" id="password-block">
+			<i class="fa fa-lock prefix" ></i>
+			<input type="password" name="password" id="form92" class="form-control">
+			<label for="form92" data-error="wrong" >Type your password</label>
+		</div>
 
-    <div class="md-form form-group" id="password-block">
-        <i class="fa fa-lock prefix" ></i>
-        <input type="password" name="password" id="form92" class="form-control validate">
-        <label for="form92" data-error="wrong" data-success="right">Type your password</label>
-    </div>
+		<div class="md-form form-group" id="login-button">
+			<input type="submit" value="Login" class="btn btn-primary btn-lg">
+		</div>
 
-    <div class="md-form form-group" id="login-button">
-        <input type="submit" value="Login" class="btn btn-primary btn-lg">
-    </div>
-
-</form>
-
+	</form>
+</div>
 
     <!-- /Start your project here-->
 	
