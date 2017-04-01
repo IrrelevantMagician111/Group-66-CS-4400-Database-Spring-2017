@@ -1,0 +1,51 @@
+/* YOUR CUSTOM STYLES */
+
+/*This defines the contair of the login box*/
+.center-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	
+}
+/*This defines the footer at the bottom of the login box*/
+.modal-footer {
+	-webkit-justify-content: center;
+	justify-content: center;
+	align-items: center;
+}
+/*This defines the containerof the element*/
+.background-wrap { 
+    position: fixed;
+    z-index: -1000;
+	overflow: hidden;
+	top: 0;
+    left: 0;
+	width: 100%;
+	height: 100%;
+}
+/*This defines the video element*/
+#video-bg-elem {
+	position: absolute;
+	z-index:-1000;
+	top: 0;
+	left: 0;
+	min-height: 100%;
+	min-width: 100%;
+}
+/*This defines the entire page*/
+body, html {
+	margin: 0;
+	padding: 0;
+}
+/* This defines the tint*/
+.text {
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0,0,1500000,.4);
+	
+}

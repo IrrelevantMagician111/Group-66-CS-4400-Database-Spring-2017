@@ -1,17 +1,14 @@
 /* YOUR CUSTOM STYLES */
 
-form.form-inline {
-	position: absolute;
-}
-#password-block {
-	position: relative;
-}
-#login-button {
-	position: relative;
-}
+
 .center-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
-} /*hi hi. Testing from me/* 
+	height: 110vh;
+}
+.modal-footer {
+	-webkit-justify-content: center;
+	justify-content: center;
+	align-items: center;
+}
