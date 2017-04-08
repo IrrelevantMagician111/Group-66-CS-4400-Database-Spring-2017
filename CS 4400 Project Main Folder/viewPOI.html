@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Insert Page Name</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+
+    <!-- /Start your project here-->
+    <!--Form with header-->
+<div class="card center-container">
+    <div class="card-block">
+
+        <!--Header-->
+        <div class="form-header light-blue-gradient">
+            <h3> View POIs</h3>
+        </div>
+
+        <!--Body-->
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                POI Location Name
+            </button>
+            <div class="dropdown-menu" aria-labelledby="City">
+                <a class="dropdown-item" href="#">Georgia Tech</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                City
+            </button>
+            <div class="dropdown-menu" aria-labelledby="City">
+                <a class="dropdown-item" href="#">Atlanta</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                State
+            </button>
+            <div class="dropdown-menu" aria-labelledby="State">
+                <a class="dropdown-item" href="#">Georgia</a>
+            </div>
+        </div>
+
+        <div class="md-form">
+            <input type="text" id="form4" class="form-control">
+            <label for="form4">Zip Code</label>
+        </div>
+
+         <div class="text-center">
+            <fieldset class="form-group">
+                <input type="checkbox" id="checkbox1">
+                <label for="checkbox1">Flagged?</label>
+            </fieldset>
+        </div>
+
+        <div class="md-form">
+            
+            <input placeholder="Start date" type="text" id="date-picker-example" class="form-control datepicker">
+            <label for="date-picker-example">dd/mm/yyy</label>
+            
+            <input placeholder="End date" type="text" id="date-picker-example" class="form-control datepicker">
+            <label for="date-picker-example">dd/mm/yyyy</label>
+        </div>
+
+        <div class="text-left">
+            <button class="btn btn-indigo">Apply Filter</button>
+            <button class="btn btn-indigo">Reset Filter</button>
+        </div>
+
+        </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                      <th>Location Name</th>
+                      <th>City</th>
+                      <th>State</th>
+                      <th>Zip Code</th>
+                      <th>Flagged?</th>
+                      <th>Date Flagged</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">Georgia Tech</td>
+                        <td>Atlanta</td>
+                        <td>GA</td>
+                        <td>30332</td>
+                        <td>Yes</td>
+                        <td>01/31/2017</td>
+                    </tr> 
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center">
+            <button class="btn btn-indigo">Back</button>
+        </div>
+
+    </div>
+</div>
+<!--/Form with header-->
+
+    <!-- SCRIPTS -->
+    <style>
+    
+    </style>
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/tether.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    
+    <script type="text/javascript"> 
+        $('.datepicker').pickadate({
+        // Escape any “rule” characters with an exclamation mark (!).
+            format: 'You selecte!d: dddd, dd mmm, yyyy',
+            formatSubmit: 'yyyy/mm/dd',
+            hiddenPrefix: 'prefix__',
+            hiddenSuffix: '__suffix'
+            weekdaysShort: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            showMonthsShort: true
+            today: '',
+            clear: 'Clear selection',
+            close: 'Cancel'
+            labelMonthNext: 'Go to the next month',
+            labelMonthPrev: 'Go to the previous month',
+            labelMonthSelect: 'Pick a month from the dropdown',
+            labelYearSelect: 'Pick a year from the dropdown',
+            selectMonths: true,
+            selectYears: true,
+            editable: true,
+            selectYears: true,
+            selectMonths: true,
+            selectYears: 4,
+            firstDay: 1,
+            min: new Date(1900,1,1),
+            max: new Date(2015,7,14)
+              
+
+        })
+       
+        // Strings and translations
+        monthsFull: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        weekdaysFull: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        showMonthsShort: true,
+        showWeekdaysFull: true,
+
+        // Buttons
+        today: 'Today',
+        clear: 'Clear',
+        close: 'Close',
+
+        // Accessibility labels
+        labelMonthNext: 'Next month',
+        labelMonthPrev: 'Previous month',
+        labelMonthSelect: 'Select a month',
+        labelYearSelect: 'Select a year',
+
+        // Formats
+        format: 'd mmmm, yyyy',
+        formatSubmit: true,
+        hiddenPrefix: true,
+        hiddenSuffix: '_submit',
+        hiddenName: true,
+
+        // Editable input
+        editable: true,
+
+        // Dropdown selectors
+        selectYears: true,
+        selectMonths: true,
+
+        // First day of the week
+        firstDay: true,
+
+        // Date limits
+        min: true,
+        max: true,
+
+        // Disable dates
+        disable: undefined,
+
+        // Root picker container
+        container: undefined,
+
+        // Hidden input container
+        containerHidden: undefined,
+
+        // Close on a user action
+        closeOnSelect: true,
+        closeOnClear: true,
+
+        // Events
+        onStart: undefined,
+        onRender: undefined,
+        onOpen: undefined,
+        onClose: undefined,
+        onSet: undefined,
+        onStop: undefined,
+
+        // Classes
+        klass: {
+
+          // The element states
+          input: 'picker__input',
+          active: 'picker__input--active',
+
+          // The root picker and states *
+          picker: 'picker',
+          opened: 'picker--opened',
+          focused: 'picker--focused',
+
+          // The picker holder
+          holder: 'picker__holder',
+
+          // The picker frame, wrapper, and box
+          frame: 'picker__frame',
+          wrap: 'picker__wrap',
+          box: 'picker__box',
+
+          // The picker header
+          header: 'picker__header',
+
+          // Month navigation
+          navPrev: 'picker__nav--prev',
+          navNext: 'picker__nav--next',
+          navDisabled: 'picker__nav--disabled',
+
+          // Month & year labels
+          month: 'picker__month',
+          year: 'picker__year',
+
+          // Month & year dropdowns
+          selectMonth: 'picker__select--month',
+          selectYear: 'picker__select--year',
+
+          // Table of dates
+          table: 'picker__table',
+
+          // Weekday labels
+          weekdays: 'picker__weekday',
+
+          // Day states
+          day: 'picker__day',
+          disabled: 'picker__day--disabled',
+          selected: 'picker__day--selected',
+          highlighted: 'picker__day--highlighted',
+          now: 'picker__day--today',
+          infocus: 'picker__day--infocus',
+          outfocus: 'picker__day--outfocus',
+
+          // The picker footer
+          footer: 'picker__footer',
+
+          // Today, clear, & close buttons
+          buttonClear: 'picker__button--clear',
+          buttonClose: 'picker__button--close',
+          buttonToday: 'picker__button--today'
+        }
+
+            
+    </script>
+</body>
+
+</html>
