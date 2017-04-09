@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add points</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/MP.bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/MP.mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Added these for the date and time -->
+    <link href="css/adminfunc.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./css/bootstrap-material-datetimepicker.css" />
+
+
+</head>
+
+<body style="padding: 50px 390px 50px 390px">
+
+
+
+         <!-- Form with header-->
+        <div class="card">
+        <div class="card-block">
+
+        <!--Header-->
+        <div class="form-header  purple darken-4">
+            <h3>Add a new data point:</h3>
+        </div>
+
+        <!--Body-->
+        <div>
+            <span>POI location name:</span> 
+            <block class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Locations
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">ATL,GA</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">LIT,GA</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">MOM,GA</a></li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+             </ul>
+             </block>
+            <a href="http://www.sony.com"><u>add a new location</u></a>
+        </div>
+
+        <div class="flex-container">
+            <div class="flex-item">Time and date of reading:</div>
+            <div class="flex-item-cal">
+            <div class="row" style="margin-right: -189px">
+                <div class="col-md-6">
+                    <div class="form-control-wrapper">
+                        <input type="text" id="date-format" class="form-control floating-label" placeholder=" / /  ">
+                    </div>
+                </div>
+           </div>
+           </div>
+           <div class="flex-item-icons">
+            <img src="calendericon.png" alt="Calender" style="width:50px;height:50px;">
+           </div>
+           <div class="flex-item-icons">
+            <img src="clockicon.png" alt="Tick tock" style="width:50px;height:50px;">
+           </div>
+        </div>
+
+        <div>
+           <span>Data type</span>
+           <block class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Type
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Mold</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Air Quality</a></li>
+            </ul>
+          </block>
+          <div style="clear:both"></div>
+        </div>
+
+        <div class="flex-container">
+            <span class="flex-item">Data value:</span>
+            <block style="margin-top: 25px; margin-left: -140px;" id="datavalue"><input type="text"></block>
+        </div>
+
+        <!--Footer-->
+        <div>
+            <button type="button" class="btn btn-deep-orange">back</button>
+            <!--White-space-->
+            <block id="white-space"></block>
+            <!--Amber-->
+            <button type="button" class="btn btn-dark-green">accept</button>
+        </div>
+      </div>
+    </div>
+</body>
+
+    
+
+ 
+
+   <!-- <div class="row">
+ <button type="button" id=button>back</button>
+ <button type="button" class="btn btn-fb"><i class="fa fa-facebook left"></i> Facebook</button>
+ <button type="button" class="btn btn-fb"><i class="fa fa-facebook left"></i> Facebook</button>
+  </div> -->
+
+    <!--Deep-orange-->
+    
+
+
+
+    <!-- SCRIPTS -->
+	<style>
+
+	
+	</style>
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/tether.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script> 
+    <script type="text/javascript" src="./js/bootstrap-material-datetimepicker.js"></script>
+    <!-- For date and time -->
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $('#date').bootstrapMaterialDatePicker
+            ({
+                time: false,
+                clearButton: true
+            });
+
+            $('#time').bootstrapMaterialDatePicker
+            ({
+                date: false,
+                shortTime: false,
+                format: 'HH:mm'
+            });
+
+            $('#date-format').bootstrapMaterialDatePicker
+            ({
+                format: 'DD MMMM YYYY - HH:mm'
+            });
+            $('#date-fr').bootstrapMaterialDatePicker
+            ({
+                format: 'DD/MM/YYYY HH:mm',
+                lang: 'fr',
+                weekStart: 1, 
+                cancelText : 'ANNULER',
+                nowButton : true,
+                switchOnClick : true
+            });
+
+            $('#date-end').bootstrapMaterialDatePicker
+            ({
+                weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+            });
+            $('#date-start').bootstrapMaterialDatePicker
+            ({
+                weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime : true
+            }).on('change', function(e, date)
+            {
+                $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+            });
+
+            $('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
+
+            $.material.init()
+        });
+        </script>
+
+
+    
+</body>
+
+</html>
