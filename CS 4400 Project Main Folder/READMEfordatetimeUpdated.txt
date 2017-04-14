@@ -6,9 +6,19 @@ These lines need to go in the header with all the other links:
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./css/bootstrap-material-datetimepicker.css" />
 
-AT the very bottom where the scripts are this needs to be pasted in:
+For scripts, you the "bootstrap-material-datetimepicker.js" and the "datescript.js"
 
- <!-- For date and time -->
+
+And finally, the code to use it. Here's mine as an example:
+
+<input type="text" id="date-format" class="form-control floating-label" placeholder=" / /  ">
+<script type="text/javascript" src="./js/datescript.js"></script>
+
+And thats it!
+
+or use
+
+!-- For date and time 
     <script type="text/javascript">
         $(document).ready(function()
         {
@@ -55,11 +65,4 @@ AT the very bottom where the scripts are this needs to be pasted in:
 
             $.material.init()
         });
-        </script>
-
-
-And finally, the code to use it. Here's mine as an example:
-
-<input type="text" id="date-format" class="form-control floating-label" placeholder=" / /  ">
-
-And thats it!
+        </script>-->
