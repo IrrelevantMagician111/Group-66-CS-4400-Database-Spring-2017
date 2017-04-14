@@ -16,6 +16,25 @@
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./css/bootstrap-material-datetimepicker.css" />
+
+
+  <script>
+    $(function() {
+      
+      $("#datepicker, #datepicker2").datepicker({
+        onSelect: function(dateText, inst) { 
+          $(this).prev()[0].value = dateText;
+        }
+      });
+    
+    
+  });
+  </script>
+
+
 </head>
 
 <body>
@@ -72,13 +91,20 @@
         </div>
 
         <div class="md-form">
-            
-            <input placeholder="Start date" type="text" id="date-picker-example" class="form-control datepicker">
-            <label for="date-picker-example">dd/mm/yyy</label>
-            
-            <input placeholder="End date" type="text" id="date-picker-example" class="form-control datepicker">
-            <label for="date-picker-example">dd/mm/yyyy</label>
+          <div class="form-control-wrapper">
+            <input placeholder="Start date" type="text" id="date-format1" class="form-control floating-label">
+            <label for="date-format1">dd/mm/yyy</label>
+          </div>
         </div>
+
+        <div class="md-form">
+          <div class="form-control-wrapper">
+            <input placeholder="End date" type="text" id="date-format2" class="form-control floating-label">
+            <label for="date-format2">dd/mm/yyy</label>
+          </div>
+        </div>
+        
+      
 
         <div class="text-left">
             <button class="btn btn-indigo">Apply Filter</button>
@@ -86,6 +112,7 @@
         </div>
 
         </div>
+        <div>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -130,159 +157,63 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
-    
-    <script type="text/javascript"> 
-        $('.datepicker').pickadate({
-        // Escape any “rule” characters with an exclamation mark (!).
-            format: 'You selecte!d: dddd, dd mmm, yyyy',
-            formatSubmit: 'yyyy/mm/dd',
-            hiddenPrefix: 'prefix__',
-            hiddenSuffix: '__suffix'
-            weekdaysShort: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            showMonthsShort: true
-            today: '',
-            clear: 'Clear selection',
-            close: 'Cancel'
-            labelMonthNext: 'Go to the next month',
-            labelMonthPrev: 'Go to the previous month',
-            labelMonthSelect: 'Pick a month from the dropdown',
-            labelYearSelect: 'Pick a year from the dropdown',
-            selectMonths: true,
-            selectYears: true,
-            editable: true,
-            selectYears: true,
-            selectMonths: true,
-            selectYears: 4,
-            firstDay: 1,
-            min: new Date(1900,1,1),
-            max: new Date(2015,7,14)
-              
 
-        })
-       
-        // Strings and translations
-        monthsFull: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        weekdaysFull: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        showMonthsShort: true,
-        showWeekdaysFull: true,
-
-        // Buttons
-        today: 'Today',
-        clear: 'Clear',
-        close: 'Close',
-
-        // Accessibility labels
-        labelMonthNext: 'Next month',
-        labelMonthPrev: 'Previous month',
-        labelMonthSelect: 'Select a month',
-        labelYearSelect: 'Select a year',
-
-        // Formats
-        format: 'd mmmm, yyyy',
-        formatSubmit: true,
-        hiddenPrefix: true,
-        hiddenSuffix: '_submit',
-        hiddenName: true,
-
-        // Editable input
-        editable: true,
-
-        // Dropdown selectors
-        selectYears: true,
-        selectMonths: true,
-
-        // First day of the week
-        firstDay: true,
-
-        // Date limits
-        min: true,
-        max: true,
-
-        // Disable dates
-        disable: undefined,
-
-        // Root picker container
-        container: undefined,
-
-        // Hidden input container
-        containerHidden: undefined,
-
-        // Close on a user action
-        closeOnSelect: true,
-        closeOnClear: true,
-
-        // Events
-        onStart: undefined,
-        onRender: undefined,
-        onOpen: undefined,
-        onClose: undefined,
-        onSet: undefined,
-        onStop: undefined,
-
-        // Classes
-        klass: {
-
-          // The element states
-          input: 'picker__input',
-          active: 'picker__input--active',
-
-          // The root picker and states *
-          picker: 'picker',
-          opened: 'picker--opened',
-          focused: 'picker--focused',
-
-          // The picker holder
-          holder: 'picker__holder',
-
-          // The picker frame, wrapper, and box
-          frame: 'picker__frame',
-          wrap: 'picker__wrap',
-          box: 'picker__box',
-
-          // The picker header
-          header: 'picker__header',
-
-          // Month navigation
-          navPrev: 'picker__nav--prev',
-          navNext: 'picker__nav--next',
-          navDisabled: 'picker__nav--disabled',
-
-          // Month & year labels
-          month: 'picker__month',
-          year: 'picker__year',
-
-          // Month & year dropdowns
-          selectMonth: 'picker__select--month',
-          selectYear: 'picker__select--year',
-
-          // Table of dates
-          table: 'picker__table',
-
-          // Weekday labels
-          weekdays: 'picker__weekday',
-
-          // Day states
-          day: 'picker__day',
-          disabled: 'picker__day--disabled',
-          selected: 'picker__day--selected',
-          highlighted: 'picker__day--highlighted',
-          now: 'picker__day--today',
-          infocus: 'picker__day--infocus',
-          outfocus: 'picker__day--outfocus',
-
-          // The picker footer
-          footer: 'picker__footer',
-
-          // Today, clear, & close buttons
-          buttonClear: 'picker__button--clear',
-          buttonClose: 'picker__button--close',
-          buttonToday: 'picker__button--today'
-        }
-
-            
+    <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script> 
+    <script type="text/javascript" src="./js/bootstrap-material-datetimepicker.js"></script>
+    <script type="text/javascript">
+      $('#date-format1,#date-format2').bootstrapMaterialDatePicker({ format : ' DD MMMM YYYY - HH:mm' });
     </script>
+    <!--<script type="text/javascript" src="./js/datescript.js"></script>-->
+    <!-- For date and time 
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $('#date').bootstrapMaterialDatePicker
+            ({
+                time: false,
+                clearButton: true
+            });
+
+            $('#time').bootstrapMaterialDatePicker
+            ({
+                date: false,
+                shortTime: false,
+                format: 'HH:mm'
+            });
+
+            $('#date-format').bootstrapMaterialDatePicker
+            ({
+                format: 'DD MMMM YYYY - HH:mm'
+            });
+            $('#date-fr').bootstrapMaterialDatePicker
+            ({
+                format: 'DD/MM/YYYY HH:mm',
+                lang: 'fr',
+                weekStart: 1, 
+                cancelText : 'ANNULER',
+                nowButton : true,
+                switchOnClick : true
+            });
+
+            $('#date-end').bootstrapMaterialDatePicker
+            ({
+                weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+            });
+            $('#date-start').bootstrapMaterialDatePicker
+            ({
+                weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime : true
+            }).on('change', function(e, date)
+            {
+                $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+            });
+
+            $('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
+
+            $.material.init()
+        });
+        </script>-->
+    
+    
 </body>
 
 </html>
