@@ -1,0 +1,5 @@
+1. Create the tables manually in phpmyAdmin.
+2. Make sure the data types are correct for each attribute.
+3. Add the foreign key contraints. These must be done manually on the SQL command line.
+4. Import each excel file individually into their respective tables.
+5. If you have any questions, feel free to ask.
