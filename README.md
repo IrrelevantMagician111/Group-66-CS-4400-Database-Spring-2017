@@ -6,7 +6,7 @@ Add a new Data Point : MP
 Add a new Location : SB
 Choose Functionality (Admin): MP
 Pending City Official Accounts : MP
-Pending City Official Accounts : CS
+Pending City Official Data Points : CS
 Choose Functionality (City Official) : CS
 View POIs : SB
 POI Detail: RD
