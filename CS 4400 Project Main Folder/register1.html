@@ -15,6 +15,20 @@
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script>
+		function onCityOfficial(event)
+		{
+			var userType = document.getElementById('user-type-select').value;
+			if(userType==="City Official")
+			{
+				document.getElementById('city-stuff').style.display = "block";
+			}
+			else
+			{
+				document.getElementById('city-stuff').style.display = "none";
+			}
+		}
+	</script> 
 
 </head>
 
@@ -60,40 +74,41 @@
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 User Type
             </button>
-            <div class="dropdown-menu" aria-labelledby="User Type">
-                <a class="dropdown-item" href="#">City Official</a>
-                <a class="dropdown-item" href="#">City Scientist</a>
-            </div>
+            
         </div>
-
+		<select class="btn btn-secondary" id="user-type-select" aria-labelledby="User Type" onchange="onCityOfficial()">
+            <option selected disabled>User Type</option>
+			<option value="City Official">City Official</option>
+            <option value="City Scientist">City Scientist</option>
+        </select>
 
         <div class="form-header light-blue-gradient">
             <h3> Fill out this form if you choose city official</h3>
         </div>
+		<div style="display: none;" id="city-stuff">
+			<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					City
+				</button>
+				<div class="dropdown-menu" aria-labelledby="City">
+					<a class="dropdown-item" href="#">Atlanta</a>
+				</div>
+			</div>
 
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                City
-            </button>
-            <div class="dropdown-menu" aria-labelledby="City">
-                <a class="dropdown-item" href="#">Atlanta</a>
-            </div>
-        </div>
+			<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					State
+				</button>
+				<div class="dropdown-menu" aria-labelledby="State">
+					<a class="dropdown-item" href="#">Georgia</a>
+				</div>
+			</div>
 
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                State
-            </button>
-            <div class="dropdown-menu" aria-labelledby="State">
-                <a class="dropdown-item" href="#">Georgia</a>
-            </div>
-        </div>
-
-        <div class="md-form">
-            <input type="text" id="form4" class="form-control">
-            <label for="form4">Title</label>
-        </div>
-
+			<div class="md-form">
+				<input type="text" id="form4" class="form-control">
+				<label for="form4">Title</label>
+			</div>
+		<div>
         <div class="text-center">
             <button class="btn btn-indigo">Create</button>
         </div>
