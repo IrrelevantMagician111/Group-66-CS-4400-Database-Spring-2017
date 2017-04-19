@@ -39,18 +39,18 @@
 			</div>
 
 			<!--Body-->
-			<form action="" method="get" id="form-main"> <!-- Need to go to new php page and verify login. If user exists, go to appropriate page based on user type. If does not exist, load the same page with error message.  -->
+			<form action="login.php" method="post" id="form-main"> <!-- Need to go to new php page and verify login. If user exists, go to appropriate page based on user type. If does not exist, load the same page with error message.  -->
 				<!--Username-->
 				<div class="md-form">
 					<i class="fa fa-user prefix" aria-hidden="true"></i>
-					<input type="text" id="form2" class="form-control">
+					<input type="text" id="form2" name="username" class="form-control">
 					<label for="form2">Enter Username</label>
 				</div>
 
 				<!--Password-->
 				<div class="md-form">
 					<i class="fa fa-lock prefix"></i>
-					<input type="password" id="form4" class="form-control">
+					<input type="password" id="form4" name="password" class="form-control">
 					<label for="form4">Enter password</label>
 				</div>
 

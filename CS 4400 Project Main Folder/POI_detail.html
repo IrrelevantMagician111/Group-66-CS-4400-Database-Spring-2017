@@ -18,6 +18,18 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="./css/bootstrap-material-datetimepicker.css" />
+	<script>
+    $(function() {
+      
+      $("#datepicker, #datepicker2").datepicker({
+        onSelect: function(dateText, inst) { 
+          $(this).prev()[0].value = dateText;
+        }
+      });
+    
+    
+  });
+  </script>
 
 </head>
 
@@ -70,14 +82,14 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="md-form">
-							<input placeholder="Enter Date" type="text" id="date" class="form-control floating-label">
-							<label for="date-picker-example">Beginning Date</label>
+							<input placeholder="Enter Date" type="text" id="date-format1" name="begin" class="form-control floating-label">
+							<label for="date-format1">Beginning Date</label>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="md-form">
-							<input placeholder="Enter Date" type="text" id="date1" class="form-control floating-label">
-							<label for="date-picker-example">Ending Date</label>
+							<input placeholder="Enter Date" type="text" id="date-format2" name="end" class="form-control floating-label">
+							<label for="date-format2">Ending Date</label>
 						</div>
 					</div>
 				</div>
@@ -125,18 +137,58 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
 	<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script> 
-	 <script type="text/javascript" src="./js/bootstrap-material-datetimepicker.js"></script>
-	 <script type="text/javascript">
-        $(document).ready(function()
+	<script type="text/javascript" src="./js/bootstrap-material-datetimepicker.js"></script>
+	<script type="text/javascript">
+      $('#date-format1,#date-format2').bootstrapMaterialDatePicker({ format : ' DD MMMM YYYY - HH:mm' });
+    </script>
+	<script type="text/javascript">
+       $(document).ready(function()
         {
             $('#date').bootstrapMaterialDatePicker
             ({
                 time: false,
                 clearButton: true
             });
-            $.material.init()
+
+            $('#time').bootstrapMaterialDatePicker
+            ({
+                date: false,
+                shortTime: false,
+                format: 'HH:mm'
+            });
+
+            $('#date-format').bootstrapMaterialDatePicker
+            ({
+                format: 'DD MMMM YYYY - HH:mm'
+            });
+            $('#date-fr').bootstrapMaterialDatePicker
+            ({
+                format: 'DD/MM/YYYY HH:mm',
+                lang: 'fr',
+                weekStart: 1, 
+                cancelText : 'ANNULER',
+                nowButton : true,
+                switchOnClick : true
+            });
+
+            $('#date-end').bootstrapMaterialDatePicker
+            ({
+                weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+            });
+            $('#date-start').bootstrapMaterialDatePicker
+            ({
+                weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime : true
+            }).on('change', function(e, date)
+            {
+                $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+            });
+
+            $('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
+
+            $material.init()
         });
-        </script>
+    </script> 
+	 
 </body>
 
 </html>
