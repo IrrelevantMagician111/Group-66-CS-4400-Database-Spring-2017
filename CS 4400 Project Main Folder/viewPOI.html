@@ -38,8 +38,7 @@
 </head>
 
 <body>
-
-
+<form action = "viewPOI.php" method = "post">
     <!-- /Start your project here-->
     <!--Form with header-->
 <div class="center-container">
@@ -54,19 +53,18 @@
 			<div class="dropdown">
 				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					POI Location Name
-				</button>
-				<div class="dropdown-menu" aria-labelledby="City">
-					<a class="dropdown-item" href="#">Georgia Tech</a>
-				</div>
+				<select name = "LocName">
+				<option value= "Georgia Tech" Georgia Tech </option>
+				<select>
 			</div>
 
 			<div class="dropdown">
 				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					City
 				</button>
-				<div class="dropdown-menu" aria-labelledby="City">
-					<a class="dropdown-item" href="#">Atlanta</a>
-				</div>
+                <select name = "City">
+                <option value= "Atlanta" Atlanta </option>
+                <select>
 			</div>
 
 			<div class="dropdown">
@@ -76,30 +74,33 @@
 				<div class="dropdown-menu" aria-labelledby="State">
 					<a class="dropdown-item" href="#">Georgia</a>
 				</div>
+                <select name = "State">
+                <option value= "Georgia" Georgia </option>
+                <select>
 			</div>
 
 			<div class="md-form">
-				<input type="text" id="form4" class="form-control">
+				<input name = "Zip" type="text" id="form4" class="form-control">
 				<label for="form4">Zip Code</label>
 			</div>
 
 			 <div class="text-center">
 				<fieldset class="form-group">
-					<input type="checkbox" id="checkbox1">
+					<input name= "Check" type="checkbox" id="checkbox1">
 					<label for="checkbox1">Flagged?</label>
 				</fieldset>
 			</div>
 
 			<div class="md-form">
 			  <div class="form-control-wrapper">
-				<input placeholder="Start date" type="text" id="date-format1" class="form-control floating-label">
+				<input name = "sDate" placeholder="Start date" type="text" id="date-format1" class="form-control floating-label">
 				<label for="date-format1">dd/mm/yyy</label>
 			  </div>
 			</div>
 
 			<div class="md-form">
 			  <div class="form-control-wrapper">
-				<input placeholder="End date" type="text" id="date-format2" class="form-control floating-label">
+				<input name = "eDate" placeholder="End date" type="text" id="date-format2" class="form-control floating-label">
 				<label for="date-format2">dd/mm/yyy</label>
 			  </div>
 			</div>
@@ -164,57 +165,8 @@
     <script type="text/javascript">
       $('#date-format1,#date-format2').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
     </script>
-    <!--<script type="text/javascript" src="./js/datescript.js"></script>-->
-    <!-- For date and time 
-    <script type="text/javascript">
-        $(document).ready(function()
-        {
-            $('#date').bootstrapMaterialDatePicker
-            ({
-                time: false,
-                clearButton: true
-            });
-
-            $('#time').bootstrapMaterialDatePicker
-            ({
-                date: false,
-                shortTime: false,
-                format: 'HH:mm'
-            });
-
-            $('#date-format').bootstrapMaterialDatePicker
-            ({
-                format: 'DD MMMM YYYY - HH:mm'
-            });
-            $('#date-fr').bootstrapMaterialDatePicker
-            ({
-                format: 'DD/MM/YYYY HH:mm',
-                lang: 'fr',
-                weekStart: 1, 
-                cancelText : 'ANNULER',
-                nowButton : true,
-                switchOnClick : true
-            });
-
-            $('#date-end').bootstrapMaterialDatePicker
-            ({
-                weekStart: 0, format: 'DD/MM/YYYY HH:mm'
-            });
-            $('#date-start').bootstrapMaterialDatePicker
-            ({
-                weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime : true
-            }).on('change', function(e, date)
-            {
-                $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
-            });
-
-            $('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
-
-            $.material.init()
-        });
-        </script>-->
-    
-    
+  
+</form> 
 </body>
 
 </html>
