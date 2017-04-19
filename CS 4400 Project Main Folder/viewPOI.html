@@ -13,7 +13,7 @@
     <!-- Material Design Bootstrap -->
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/login_style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
@@ -42,76 +42,77 @@
 
     <!-- /Start your project here-->
     <!--Form with header-->
-<div class="card center-container">
-    <div class="card-block">
+<div class="center-container">
+    <div class="card">
+		<div class="card-block">
+			<!--Header-->
+			<div class="form-header light-blue-gradient text-center">
+				<h3> View POIs</h3>
+			</div>
 
-        <!--Header-->
-        <div class="form-header light-blue-gradient">
-            <h3> View POIs</h3>
-        </div>
+			<!--Body-->
+			<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					POI Location Name
+				</button>
+				<div class="dropdown-menu" aria-labelledby="City">
+					<a class="dropdown-item" href="#">Georgia Tech</a>
+				</div>
+			</div>
 
-        <!--Body-->
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                POI Location Name
-            </button>
-            <div class="dropdown-menu" aria-labelledby="City">
-                <a class="dropdown-item" href="#">Georgia Tech</a>
-            </div>
-        </div>
+			<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					City
+				</button>
+				<div class="dropdown-menu" aria-labelledby="City">
+					<a class="dropdown-item" href="#">Atlanta</a>
+				</div>
+			</div>
 
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                City
-            </button>
-            <div class="dropdown-menu" aria-labelledby="City">
-                <a class="dropdown-item" href="#">Atlanta</a>
-            </div>
-        </div>
+			<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					State
+				</button>
+				<div class="dropdown-menu" aria-labelledby="State">
+					<a class="dropdown-item" href="#">Georgia</a>
+				</div>
+			</div>
 
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                State
-            </button>
-            <div class="dropdown-menu" aria-labelledby="State">
-                <a class="dropdown-item" href="#">Georgia</a>
-            </div>
-        </div>
+			<div class="md-form">
+				<input type="text" id="form4" class="form-control">
+				<label for="form4">Zip Code</label>
+			</div>
 
-        <div class="md-form">
-            <input type="text" id="form4" class="form-control">
-            <label for="form4">Zip Code</label>
-        </div>
+			 <div class="text-center">
+				<fieldset class="form-group">
+					<input type="checkbox" id="checkbox1">
+					<label for="checkbox1">Flagged?</label>
+				</fieldset>
+			</div>
 
-         <div class="text-center">
-            <fieldset class="form-group">
-                <input type="checkbox" id="checkbox1">
-                <label for="checkbox1">Flagged?</label>
-            </fieldset>
-        </div>
+			<div class="md-form">
+			  <div class="form-control-wrapper">
+				<input placeholder="Start date" type="text" id="date-format1" class="form-control floating-label">
+				<label for="date-format1">dd/mm/yyy</label>
+			  </div>
+			</div>
 
-        <div class="md-form">
-          <div class="form-control-wrapper">
-            <input placeholder="Start date" type="text" id="date-format1" class="form-control floating-label">
-            <label for="date-format1">dd/mm/yyy</label>
-          </div>
-        </div>
+			<div class="md-form">
+			  <div class="form-control-wrapper">
+				<input placeholder="End date" type="text" id="date-format2" class="form-control floating-label">
+				<label for="date-format2">dd/mm/yyy</label>
+			  </div>
+			</div>
+			
+		  
 
-        <div class="md-form">
-          <div class="form-control-wrapper">
-            <input placeholder="End date" type="text" id="date-format2" class="form-control floating-label">
-            <label for="date-format2">dd/mm/yyy</label>
-          </div>
+			<div class="text-left">
+				<button class="btn btn-indigo">Apply Filter</button>
+				<button class="btn btn-indigo">Reset Filter</button>
+			</div>
+			
         </div>
-        
-      
-
-        <div class="text-left">
-            <button class="btn btn-indigo">Apply Filter</button>
-            <button class="btn btn-indigo">Reset Filter</button>
-        </div>
-
-        </div>
+	</div>
         <div>
             <table class="table table-striped">
                 <thead>
@@ -141,8 +142,8 @@
             <button class="btn btn-indigo">Back</button>
         </div>
 
-    </div>
 </div>
+
 <!--/Form with header-->
 
     <!-- SCRIPTS -->
