@@ -52,25 +52,65 @@
 			<!--Body-->
 			<div class="dropdown">
 				<select class = "btn btn-secondary" name = "LocName">
-                    <div>
                     <option selected disabled> POI Location Name </option>
-                    </div>
-				<select>
+                    <?php
+                        @   $db = new mysqli('localhost','root','password','cs4400');
+                        $connected = !mysqli_connect_errno();
+                        if(!$connected)
+                        {
+                        }
+                        $result = $db->query("SELECT `Name` FROM `poi`");
+
+                        while($row = $result -> fetch_assoc())
+                        {
+                             echo "<option value=\"loc\">" .$row['Name'] ."</option>";
+                        }
+                
+                    ?>
+				</select>
 			</div>
 
 			<div class="dropdown">
 				
                 <select class = "btn btn-secondary" name = "City">
                     <option selected disabled> City </option>
-                    <option value = "Atlanta" Atlanta </option>
-                <select>
+                 <?php
+                        @   $db = new mysqli('localhost','root','password','cs4400');
+                        $connected = !mysqli_connect_errno();
+                        if(!$connected)
+                        {
+                            echo "<p>You are bot connected.</p>";
+                        }
+                        $result = $db->query("SELECT DISTINCT `City` FROM `poi`");
+
+                        while($row = $result -> fetch_assoc())
+                        {
+                             echo "<option value = \"Cityy\">" .$row['City'] ."</option>";
+                        }
+                
+                    ?>
+                </select>
 			</div>
 
 			<div class="dropdown">
                 <select class = "btn btn-secondary" name = "State">
                     <option selected disabled> State </option>
-                    <option value= "Georgia" Georgia </option>
-                <select>
+                     <?php
+                        @   $db = new mysqli('localhost','root','password','cs4400');
+                        $connected = !mysqli_connect_errno();
+                        if(!$connected)
+                        {
+                            echo "<p>You are bot connected.</p>";
+                        }
+                        $result = $db->query("SELECT distinct `State` FROM `poi`");
+
+                        while($row = $result -> fetch_assoc())
+                        {
+                             echo "<option value = \"statee\">".$row['State'] ."</option>";
+                        }
+                
+                    ?>
+                </select>
 			</div>
 
 			<div class="md-form">
@@ -100,11 +140,12 @@
 			</div>
 			
 		  
-
+            
 			<div class="text-left">
-				<button class="btn btn-indigo">Apply Filter</button>
-				<button class="btn btn-indigo">Reset Filter</button>
+				<button name = "filter" class="btn btn-indigo">Apply Filter</button>
+				<button class="btn btn-indigo href="#">Reset Filter</button>
 			</div>
+            
 			
         </div>
 	</div>
