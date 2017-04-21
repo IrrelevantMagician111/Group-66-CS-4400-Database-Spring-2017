@@ -51,31 +51,5 @@ function sortTable(n, id_name, row_sort_offset, num_column) {
       }
     }
   }
-  console.log("Line 54");
-  var rows_new = table.getElementsByTagName("tr")[0];
   
-  console.log(num_column);
-  for(var i = 1; i < num_column+1; i++)
-  {
-	  console.log("Line 58");
-	  if (!(i==n))
-	  {
-		  rows_new.getElementsByTagName("td")[i].getElementsByClassName('arrow-up').style.display = "block";
-	      rows_new.getElementsByTagName("td")[i].getElementsByClassName('arrow-down').style.display = "block";
-		  console.log("Line 63");
-	  }
-	  else
-	  {
-		  console.log("Line 67");
-		 if(dir.equals("asc"))
-		{
-			rows_new.getElementsByTagName("td")[i].getElementsByClassName('arrow-up').style.display = "none";
-			console.log("Top Should disapper");
-		}
-		else
-		{
-			rows_new.getElementsByTagName("td")[i].getElementsByClassName('arrow-down').style.display = "none";
-		}		 
-	  }
-  }
 }
