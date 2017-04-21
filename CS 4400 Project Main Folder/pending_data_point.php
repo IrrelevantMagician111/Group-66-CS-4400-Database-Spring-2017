@@ -2,7 +2,7 @@
 <?php
 
     DEFINE("DB_USER", "root");
-    DEFINE("DB_PSWD", "");
+    DEFINE("DB_PSWD", "password");
     DEFINE("DB_HOST", "localhost");
     DEFINE("DB_NAME", "CS4400");
 
@@ -79,7 +79,7 @@ if(!$dbcon)
                         </tbody>
                     </table>
                     <!--Deep-orange-->
-                    <button type="button" class="btn btn-deep-orange" onclick="window.location.href='choose_functionality_city_official 2.1.html'">Back</button>
+                    <button type="button" class="btn btn-deep-orange" onclick="window.location.href='adminchoosefun.html'">Back</button>
                     <!--White-space-->
                     <block id="white-space"></block>
                     <!--Dark-green-->
