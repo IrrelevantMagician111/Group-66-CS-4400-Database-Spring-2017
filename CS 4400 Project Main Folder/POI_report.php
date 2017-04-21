@@ -17,6 +17,8 @@
 
     <!-- Material Design Bootstrap -->
     <link href="css/mdb.min.css" rel="stylesheet">
+	
+	<link href="css/sort_style.css" rel="stylesheet">
 
     <!-- Template styles -->
     <style rel="stylesheet">
@@ -155,13 +157,13 @@
 								<td><div class="arrow-up prefix" onclick="sortTable(0, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(0, 'poi-table', 3, 11)"></div></td>
 								<td><div class="arrow-up prefix" onclick="sortTable(1, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(1, 'poi-table', 3, 11)"></div></td>
 								<td><div class="arrow-up prefix" onclick="sortTable(2, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(2, 'poi-table', 3, 11)"></div></td>
-								<td><div class="arrow-up prefix" onclick="sortTable(3, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(3, 'poi-table', 3, 11)"></div></td>
-								<td><div class="arrow-up prefix" onclick="sortTable(4, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(4, 'poi-table', 3, 11)"></div></td>
-								<td><div class="arrow-up prefix" onclick="sortTable(5, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(5, 'poi-table', 3, 11)"></div></td>
-								<td><div class="arrow-up prefix" onclick="sortTable(6, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(6, 'poi-table', 3, 11)"></div></td>
-								<td><div class="arrow-up prefix" onclick="sortTable(7, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(7, 'poi-table', 3, 11)"></div></td>
-								<td><div class="arrow-up prefix" onclick="sortTable(8, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(8, 'poi-table', 3, 11)"></div></td>
-								<td><div class="arrow-up prefix" onclick="sortTable(9, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(9, 'poi-table', 3, 11)"></div></td>
+								<td class="is-num-col"><div class="arrow-up prefix " onclick="sortTable(3, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(3, 'poi-table', 3, 11)"></div></td>
+								<td class="is-num-col"><div class="arrow-up prefix" onclick="sortTable(4, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(4, 'poi-table', 3, 11)"></div></td>
+								<td class="is-num-col"><div class="arrow-up prefix" onclick="sortTable(5, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(5, 'poi-table', 3, 11)"></div></td>
+								<td class="is-num-col"><div class="arrow-up prefix" onclick="sortTable(6, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(6, 'poi-table', 3, 11)"></div></td>
+								<td class="is-num-col"><div class="arrow-up prefix" onclick="sortTable(7, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(7, 'poi-table', 3, 11)"></div></td>
+								<td class="is-num-col"><div class="arrow-up prefix" onclick="sortTable(8, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(8, 'poi-table', 3, 11)"></div></td>
+								<td class="is-num-col"><div class="arrow-up prefix" onclick="sortTable(9, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(9, 'poi-table', 3, 11)"></div></td>
 								<td><div class="arrow-up prefix" onclick="sortTable(10, 'poi-table', 3, 11)"></div><div class="arrow-down prefix" onclick="sortTable(10, 'poi-table', 3, 11)"></div></td>
 							</tr>
 							<tr>
@@ -247,6 +249,7 @@
 						  ?>
 						  </tbody>
 						</table>
+					<a class="btn btn-secondary btn-sm" href="choose_functionality_city_official%202.1.html">Back</a>
             </ul>
         </div>
     </div>
