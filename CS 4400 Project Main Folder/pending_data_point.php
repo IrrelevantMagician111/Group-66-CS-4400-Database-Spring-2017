@@ -41,7 +41,7 @@ if(!$dbcon)
             </div>
             <?php
                 echo "<form id='fm1' method='post' action='pending_data_point.php'>
-                 <input type='hidden' name='submitted' />";
+                 <input type='hidden' name='submitted' value=true/>";
 
                     //"SELECT * FROM 'data_point' WHERE 'Approved'=2"
                     $query="SELECT * FROM data_point";
@@ -83,11 +83,11 @@ if(!$dbcon)
                     <!--White-space-->
                     <block id="white-space"></block>
                     <!--Dark-green-->
-                    <button type="button" onclick="submitForm(0)" class="btn btn-amber">Reject</button>
+                    <button type="submit" name="action" value="reject" onclick="submitForm(0)" class="btn btn-amber">Reject</button>
                     <!--White-space-->
                     <block id="white-space"></block>
                     <!--Amber-->
-                    <button type="button" onclick="submitForm(1)"class="btn btn-dark-green">Accept</button>
+                    <button type="submit" name="action" value="accept"  onclick="submitForm(1)"class="btn btn-dark-green">Accept</button>
                 </form>
         </div>
     </div>
@@ -113,7 +113,7 @@ if(!$dbcon)
 <?php
     if(isset($_POST['submitted']))
     {
-        if ($_POST['submitted']==1) {
+        if ($_POST['action']=='accept') {
             echo "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.";
         }
         else
