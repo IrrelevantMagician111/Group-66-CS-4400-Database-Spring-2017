@@ -66,11 +66,28 @@
             -o-background-size: cover;
             background-size: cover;
         }
+		.arrow-up {
+			  width: 0; 
+			  height: 0; 
+			  border-left: 5px solid transparent;
+			  border-right: 5px solid transparent;
+			  
+			  border-bottom: 5px solid white;
+		}
+		.arrow-down {
+			  width: 0; 
+			  height: 0; 
+			  border-left: 5px solid transparent;
+			  border-right: 5px solid transparent;
+			  
+			  border-top: 5px solid white;
+			  margin-top: 5px;
+		}
     </style>
 
 </head>
 
-<body>
+<body style="height: 100vh;">
 
     <!--Navbar-->
     
@@ -89,8 +106,22 @@
 						<table class="table table-striped">
 						  <thead>
 							<tr>
+								<td><div class="arrow-up"></div><div class="arrow-down"></div></td>
+								<td><div class="arrow-up"></div><div class="arrow-down"></div></td>
+								<td><div class="arrow-up"></div><div class="arrow-down"></div></td>
+								<td><div class="arrow-up"></div><div class="arrow-down"></div></td>
+								<td><div class="arrow-up"></div><div class="arrow-down"></div></td>
+								<td><div class="arrow-up"></div><div class="arrow-down"></div></td>
+								<td><div class="arrow-up"></div><div class="arrow-down"></div></td>
+								<td><div class="arrow-up"></div><div class="arrow-down"></div></td>
+								<td><div class="arrow-up"></div><div class="arrow-down"></div></td>
+								<td><div class="arrow-up"></div><div class="arrow-down"></div></td>
+								<td><div class="arrow-up"></div><div class="arrow-down"></div></td>
+							</tr>
+							<tr>
 							  <th>POI Location</th>
 							  <th>City</th>
+							  <th>State</th>
 							  <th>Mold Min.</th>
 							  <th>Mold Avg</th>
 							  <th>Mold Max</th>
@@ -102,6 +133,7 @@
 							</tr>
 						  </thead>
 						  <tbody>
+						  
 							<tr>
 							  <th scope="row">1</th>
 							  <td>Mark</td>
@@ -145,6 +177,9 @@
 
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
+	
+	<!-- Sorting Script -->
+	<script src="https://www.w3schools.com/lib/w3.js"></script>
 
 
 </body>
