@@ -38,7 +38,7 @@
 </head>
 
 <body>
-<form action = "viewPOI.php" method = "post">
+
     <!-- /Start your project here-->
     <!--Form with header-->
 <div class="center-container">
@@ -58,6 +58,7 @@
                         $connected = !mysqli_connect_errno();
                         if(!$connected)
                         {
+                            echo "<p>You are not connected.</p>";
                         }
                         $result = $db->query("SELECT `Name` FROM `poi`");
 
@@ -140,11 +141,17 @@
 			</div>
 			
 		  
-            
+            <form action = "viewPOI.php" method = "post" id="form-main">
 			<div class="text-left">
-				<button name = "filter" class="btn btn-indigo">Apply Filter</button>
-				<button class="btn btn-indigo href="#">Reset Filter</button>
+				<button type = "submit" name = "filter" form ="form-main" class="btn btn-indigo">Apply Filter</button>
 			</div>
+            </form>
+
+            <form action = "viewPOI1.php" method = "post" id="form-main">
+            <div class="text-left">
+                <button type = "submit" name = "reset" form = "form-main" class="btn btn-indigo" >Reset Filter </button>
+            </div>
+            </form>
             
 			
         </div>
@@ -201,7 +208,7 @@
       $('#date-format1,#date-format2').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
     </script>
   
-</form> 
+
 </body>
 
 </html>

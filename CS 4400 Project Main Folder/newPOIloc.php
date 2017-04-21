@@ -5,11 +5,11 @@
 	@ $state = $_POST['state'];
 	@ $zip = $_POST['zip'];
 
-	if(!$name || !$zip || $city || $state)
-	{
-		echo 'Enter all details';
-		exit;
-	}
+	//if(!$name || !$zip || $city || $state)
+	//{
+	//	echo 'Enter all details';
+	//	exit;
+	//}
 
 	if(!get_magic_quotes_gpc())
 	{
@@ -24,34 +24,35 @@
 			{
 				if(isset($_POST['filter']))
 				{
-					if(!$name || !$zip || !$city || !$state)
-					{
-						$print_str="<p>Enter All Fields.</p>";
+					//if(!$name || !$zip || !$city || !$state)
+					//{
+					//	$print_str="<p>Enter All Fields.</p>";
 						// redirect to original page
-					}
+					//}
 
-					else
+					//else
 					{
 						$result = $db->query("SELECT `Name` FROM `poi`");
 						$num_results = $result->num_rows;
 
 						for($i=0; $i < $num_results ;$i++)
 						{
-							$row = $result->fetch_assoc();
-							if($name == $row[$name])
-							{
-								$print_str="<p>Enter All Fields.</p>";
-							}
+							//$row = $result->fetch_assoc();
+							//if($name == $row[$name])
+							//{
+							//	$print_str="<p>Enter All Fields.</p>";
+							//}
 
-							elseif($city == $row[$city] && $state == $row[$state]) // psuedocode
-							{
-								$print_str="<p>Enter All Fields.</p>";
-							}
+							//elseif($city == $row[$city] && $state == $row[$state]) // psuedocode
+							//{
+							//	$print_str="<p>Enter All Fields.</p>";
+							//}
 
-							else
+							//else
 							{
+								
 								$query = "INSERT INTO poi (Name, Flag, Date_Flagged, Zip_Code, City, State)
-								VALUES ('$name', '$city', '$state, $zip)";	
+								VALUES ('$name, '0', '0000-00-00', '$zip','$city', '$state')";	
 							}
 						}
 					}
