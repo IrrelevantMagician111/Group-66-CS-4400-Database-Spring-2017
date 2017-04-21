@@ -41,7 +41,7 @@ if(!$dbcon)
             </div>
             <?php
                 echo "<form id='fm1' method='post' action='pending_data_point.php'>
-                 <input type='hidden' name='submitted' value=1 />";
+                 <input type='hidden' name='submitted' />";
 
                     //"SELECT * FROM 'data_point' WHERE 'Approved'=2"
                     $query="SELECT * FROM data_point";
