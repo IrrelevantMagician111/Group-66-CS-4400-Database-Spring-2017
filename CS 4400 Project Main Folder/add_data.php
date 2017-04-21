@@ -46,7 +46,7 @@
             
 			
             <?php
-            	$mysqli = new mysqli("localhost:8889", "master_user", "password", "CS4400");
+            	$mysqli = new mysqli("localhost", "root", "password", "CS4400");
             	$result = $mysqli->query("SELECT `Name` FROM `POI` WHERE `Flag`=1");
             	if ($result) {
 			    	echo '<select name="location_name" class="mdb-select">';
@@ -147,7 +147,7 @@
 	        $date_time = addslashes($date_time);    
 	        $data_type = addslashes($data_type); 
 	        $data_value = doubleval($data_value);
-            $db = new mysqli("localhost:8889","master_user","password","CS4400");
+            $db = new mysqli("localhost","root","password","CS4400");
 
 		    if ($db->connect_errno) {
 		        echo 'Error: Could not connect to database. Please try again later.';
