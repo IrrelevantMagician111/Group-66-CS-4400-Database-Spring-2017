@@ -39,7 +39,7 @@
         </div>
 
             <div class="dropdown">
-                <select class = "btn btn-secondary" name = "LocName">
+                <select class = "btn btn-secondary" name = "city">
                     <option selected disabled> City </option>
                     <?php
                         @   $db = new mysqli('localhost','root','password','cs4400');
@@ -60,7 +60,7 @@
             </div>
 
             <div class="dropdown">
-                <select class = "btn btn-secondary" name = "LocName">
+                <select class = "btn btn-secondary" name = "state">
                     <option selected disabled> State </option>
                     <?php
                         @   $db = new mysqli('localhost','root','password','cs4400');

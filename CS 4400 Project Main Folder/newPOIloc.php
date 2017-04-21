@@ -1,9 +1,11 @@
 <?php
 	
-	$name = $_POST['name'];
-	$zip = $_POST['zip'];
+	@ $name = $_POST['name'];
+	@ $city = $_POST['city'];
+	@ $state = $_POST['state'];
+	@ $zip = $_POST['zip'];
 
-	if(!$name || !$zip )
+	if(!$name || !$zip || $city || $state)
 	{
 		echo 'Enter all details';
 		exit;
@@ -20,9 +22,40 @@
 			$connected = !mysqli_connect_errno();
 			if($connected)
 			{
+				if(isset($_POST['filter']))
+				{
+					if(!$name || !$zip || !$city || !$state)
+					{
+						$print_str="<p>Enter All Fields.</p>";
+						// redirect to original page
+					}
 
+					else
+					{
+						$result = $db->query("SELECT `Name` FROM `poi`");
+						$num_results = $result->num_rows;
 
-				
+						for($i=0; $i < $num_results ;$i++)
+						{
+							$row = $result->fetch_assoc();
+							if($name == $row[$name])
+							{
+								$print_str="<p>Enter All Fields.</p>";
+							}
+
+							elseif($city == $row[$city] && $state == $row[$state]) // psuedocode
+							{
+								$print_str="<p>Enter All Fields.</p>";
+							}
+
+							else
+							{
+								$query = "INSERT INTO poi (Name, Flag, Date_Flagged, Zip_Code, City, State)
+								VALUES ('$name', '$city', '$state, $zip)";	
+							}
+						}
+					}
+				}
 
 			}
 
