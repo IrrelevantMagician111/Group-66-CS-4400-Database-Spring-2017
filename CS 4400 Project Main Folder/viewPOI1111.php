@@ -218,23 +218,6 @@
                                         }
                                 }
                             }
-                                        
-                            else
-                            {      
-                                echo $print_str="<p> ELEVEN.</p>";
-                                $result = $db->query("SELECT `Name`, `City`, `State`, `Zip_Code`, `Flag`, `Date_Flagged` FROM `poi`");
-                                echo $print_str="<p> TWELVE.</p>";
-                                while($row = $result -> fetch_assoc())
-                                {
-                                            //$name=$row['Name'];
-                                            //$city=$row['City'];
-                                            //$state=$row['State'];
-                                            //$zip=$row['Zip_Code'];
-                                            //$flag=$row['Flag'];
-                                            //$dateFlag=$row['Date_Flagged'];
-                                            echo $result;
-                                }
-                            }
                 }       
             ?>
                     
