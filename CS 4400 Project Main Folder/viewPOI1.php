@@ -43,15 +43,15 @@
     <!--Form with header-->
 <div class="center-container">
     <div class="card">
-		<div class="card-block">
-			<!--Header-->
-			<div class="form-header light-blue-gradient text-center">
-				<h3> View POIs</h3>
-			</div>
+        <div class="card-block">
+            <!--Header-->
+            <div class="form-header light-blue-gradient text-center">
+                <h3> View POIs</h3>
+            </div>
 
-			<!--Body-->
-			<div class="dropdown">
-				<select class = "btn btn-secondary" name = "LocName">
+            <!--Body-->
+            <div class="dropdown">
+                <select class = "btn btn-secondary" name = "LocName">
                     <option selected disabled> POI Location Name </option>
                     <?php
                         @   $db = new mysqli('localhost','root','password','cs4400');
@@ -68,11 +68,11 @@
                         }
                 
                     ?>
-				</select>
-			</div>
+                </select>
+            </div>
 
-			<div class="dropdown">
-				
+            <div class="dropdown">
+                
                 <select class = "btn btn-secondary" name = "City">
                     <option selected disabled> City </option>
                  <?php
@@ -91,9 +91,9 @@
                 
                     ?>
                 </select>
-			</div>
+            </div>
 
-			<div class="dropdown">
+            <div class="dropdown">
                 <select class = "btn btn-secondary" name = "State">
                     <option selected disabled> State </option>
                      <?php
@@ -112,50 +112,186 @@
                 
                     ?>
                 </select>
-			</div>
+            </div>
 
-			<div class="md-form">
-				<input name = "Zip" type="text" id="form4" class="form-control">
-				<label for="form4">Zip Code</label>
-			</div>
+            <div class="md-form">
+                <input name = "Zip" type="text" id="form4" class="form-control">
+                <label for="form4">Zip Code</label>
+            </div>
 
-			 <div class="text-center">
-				<fieldset class="form-group">
-					<input name= "Check" type="checkbox" id="checkbox1">
-					<label for="checkbox1">Flagged?</label>
-				</fieldset>
-			</div>
+             <div class="text-center">
+                <fieldset class="form-group">
+                    <input name= "Check" type="checkbox" id="checkbox1">
+                    <label for="checkbox1">Flagged?</label>
+                </fieldset>
+            </div>
 
-			<div class="md-form">
-			  <div class="form-control-wrapper">
-				<input name = "sDate" placeholder="Start date" type="text" id="date-format1" class="form-control floating-label">
-				<label for="date-format1">dd/mm/yyy</label>
-			  </div>
-			</div>
+            <div class="md-form">
+              <div class="form-control-wrapper">
+                <input name = "sDate" placeholder="Start date" type="text" id="date-format1" class="form-control floating-label">
+                <label for="date-format1">dd/mm/yyy</label>
+              </div>
+            </div>
 
-			<div class="md-form">
-			  <div class="form-control-wrapper">
-				<input name = "eDate" placeholder="End date" type="text" id="date-format2" class="form-control floating-label">
-				<label for="date-format2">dd/mm/yyy</label>
-			  </div>
-			</div>
-			
-		  
-            <form action = "viewPOI.php" method = "post" id="form-main">
-			<div class="text-left">
-				<button type = "submit" name = "filter" form ="form-main" class="btn btn-indigo">Apply Filter</button>
-			</div>
+            <div class="md-form">
+              <div class="form-control-wrapper">
+                <input name = "eDate" placeholder="End date" type="text" id="date-format2" class="form-control floating-label">
+                <label for="date-format2">dd/mm/yyy</label>
+              </div>
+            </div>
+            
+          
+            <form action = "viewPOI1.php" method = "post" id="form-main">
+            <div class="text-left">
+                <button type = "submit" name = "filter" form ="form-main" class="btn btn-indigo">Apply Filter</button>
+            </div>
+            <?php
+                // create variable names
+            @ $name = $_POST['LocName'];
+            @ $city = $_POST['City'];
+            @ $state = $_POST['State'];
+            @ $zip = $_POST['Zip'];
+            @ $check = $_POST['Check'];
+            @ $sDate = $_POST['sDate'];
+            @ $eDate = $_POST['eDate'];
+
+            $zip = trim($zip);
+
+            if(!get_magic_quotes_gpc())
+            {
+                $name = addslashes($name);
+                $city = addslashes($city);
+                $state = addslashes($state);
+            }
+
+            @   $db = new mysqli('localhost','root','password','cs4400');
+                $connected = !mysqli_connect_errno();
+                if($connected)
+                {
+                    if(isset($_POST['filter']))
+                    {
+                        if($name || $city || $state || $zip || $check || $sDate || $eDate)
+                        {
+                            $result = $db->query("SELECT `Name` `City` `State` `Zip_Code` `Flag` `Date_Flagged` FROM `poi`");
+                                while($row = $result -> fetch_assoc())
+                                {
+                                    if($name==$row['Name']||$city==$row['City']||$state==$row['State']||$zip==$row['Zip_Code']||$check==$row['Flag']|| (($dFlag=$row['Date_Flagged'] >= $sDate) && ($dFlag=$row['Date_Flagged'] <= $sDate)))
+                                    {
+                                        
+                                        $name=$row['Name'];
+                                        $city=$row['City'];
+                                        $state=$row['State'];
+                                        $zip=$row['Zip_Code'];
+                                        $flag=$row['Flag'];
+                                        $dateFlag=$row['Date_Flagged'];
+                                        
+                                        echo "<table class='table table-striped'>";
+                                        echo    "<thead>";
+                                        echo       "<tr>";
+                                        echo           "<th>Location Name</th>";
+                                        echo           "<th>City</th>";
+                                        echo           "<th>State</th>";
+                                        echo           "<th>Zip Code</th>";
+                                        echo           "<th>Flagged?</th>";
+                                        echo           "<th>Date Flagged</th>";
+                                        echo        "</tr>";
+                                        echo    "<thead>";
+                                        echo        "</tr>";
+                                        echo                "<th>name</th>";
+                                        echo                "<th>city</th>";
+                                        echo                "<th>state</th>";
+                                        echo               "<th>zip</th>";
+                                        echo                "<th>Flag</th>";
+                                        echo                "<th>dateFlag</th>";
+                                        echo            "</tr>";
+                                        echo        "</thead>";
+                                        echo "<tbody>";
+                                    }
+                                }
+                        }
+                    }
+                }       
+            ?>
             </form>
 
             <form action = "viewPOI1.php" method = "post" id="form-main">
             <div class="text-left">
                 <button type = "submit" name = "reset" form = "form-main" class="btn btn-indigo" >Reset Filter </button>
             </div>
+            <?php
+                // create variable names
+            @ $name = $_POST['LocName'];
+            @ $city = $_POST['City'];
+            @ $state = $_POST['State'];
+            @ $zip = $_POST['Zip'];
+            @ $check = $_POST['Check'];
+            @ $sDate = $_POST['sDate'];
+            @ $eDate = $_POST['eDate'];
+
+            $zip = trim($zip);
+
+            if(!get_magic_quotes_gpc())
+            {
+                $name = addslashes($name);
+                $city = addslashes($city);
+                $state = addslashes($state);
+            }
+
+            @   $db = new mysqli('localhost','root','password','cs4400');
+                $connected = !mysqli_connect_errno();
+                if($connected)
+                {
+                    if(isset($_POST['reset']))
+                    { 
+                        $result = $db->query("SELECT `Name` `City` `State` `Zip_Code` `Flag` `Date_Flagged` FROM `poi`");
+
+                        if(!$result)
+                        {
+                            $print_str="<p>Query Failed.</p>";
+                        }
+                         
+                        else
+                        {   
+                            while($row = $result -> fetch_assoc())
+                            {       
+                                $name=$row['Name'];
+                                $city=$row['City'];
+                                $state=$row['State'];
+                                $zip=$row['Zip_Code'];
+                                $flag=$row['Flag'];
+                                $dateFlag=$row['Date_Flagged'];
+                                
+                                echo "<table class='table table-striped'>";
+                                    echo   "<thead>";
+                                    echo       "<tr>";
+                                    echo           "<th>Location Name</th>";
+                                    echo           "<th>City</th>";
+                                    echo           "<th>State</th>";
+                                    echo           "<th>Zip Code</th>";
+                                    echo           "<th>Flagged?</th>";
+                                    echo           "<th>Date Flagged</th>";
+                                    echo        "</tr>";
+                                    echo    "<thead>";
+                                    echo        "</tr>";
+                                    echo                "<th>name</th>";
+                                    echo                "<th>city</th>";
+                                    echo                "<th>state</th>";
+                                    echo               "<th>zip</th>";
+                                    echo                "<th>Flag</th>";
+                                    echo                "<th>dateFlag</th>";
+                                    echo            "</tr>";
+                                    echo        "</thead>";
+                                    echo "<tbody>";
+                            } 
+                        }      
+                    }
+                }      
+            ?>
             </form>
             
-			
+            
         </div>
-	</div>
+       </div>
         <div>
             <table class="table table-striped">
                 <thead>
@@ -182,7 +318,7 @@
         </div>
 
         <div class="text-center">
-            <button class="btn btn-indigo">Back</button>
+            <button class="btn btn-indigo href=" choose_functionality_city_official%202.1.html"> </a>Back</button>
         </div>
 
 </div>
