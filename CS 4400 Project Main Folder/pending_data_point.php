@@ -44,7 +44,7 @@ if(!$dbcon)
                  <input type='hidden' name='submitted' value=true/>";
 
                     //"SELECT * FROM 'data_point' WHERE 'Approved'=2"
-                    $query="SELECT * FROM data_point";
+                    $query="SELECT * FROM data_point WHERE Accepted=2";
                     $result= mysqli_query($dbcon, $query) or die("Error getting data.");
                     echo "<table class='table table-striped'>";
                         echo "<thead>
@@ -67,13 +67,13 @@ if(!$dbcon)
                                 echo "<tr>
                                           <td><input type='checkbox'
                                           name='checkbox[]'
-                                          id='checkbox[]'
-                                          value='' /></td>
+                                          id='checkbox'
+                                          value='" . $poi_location . "!!!!!" . $date_recorded."' /></td>
                                           <td>$poi_location</td>
                                           <td>$data_type</td>
                                           <td>$data_value</td>
                                           <td>$date_recorded</td>
-                                      </tr>";
+                                      </tr>"; //<td><input type='text' name='daterec[]' class='txtField' id='daterec' value=$date_recorded></td>
                             }
                             ?>
                         </tbody>
@@ -87,7 +87,7 @@ if(!$dbcon)
                     <!--White-space-->
                     <block id="white-space"></block>
                     <!--Amber-->
-                    <button type="submit" name="action" value="accept"  onclick="submitForm(1)"class="btn btn-dark-green">Accept</button>
+                    <button type="submit" name="action" value="accept" onclick="submitForm(1)" class="btn btn-dark-green">Accept</button>
                 </form>
         </div>
     </div>
@@ -114,16 +114,34 @@ if(!$dbcon)
     if(isset($_POST['submitted']))
     {
         if ($_POST['action']=='accept') {
-            echo "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.";
+            //echo "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.";
+
+            @$checkbox=$_POST['checkbox'];
+            for($i=0;$i<count($checkbox);$i++)
+            {
+                $ids= explode("!!!!!", $checkbox[$i]);
+                $sql1="UPDATE data_point SET Accepted=1 WHERE Name = '".$ids[0]."' AND Date_Recorded = '".$ids[1]."' ";
+                mysqli_query($dbcon, $sql1);
+                echo '<meta http-equiv="refresh" content="0">';
+            }
+
         }
         else
         {
-            echo "dsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            //echo "dsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            @$checkbox=$_POST['checkbox'];
+            for($i=0;$i<count($checkbox);$i++)
+            {
+                $ids= explode("!!!!!", $checkbox[$i]);
+                $sql1="UPDATE data_point SET Accepted=0 WHERE Name = '".$ids[0]."' AND Date_Recorded = '".$ids[1]."' ";
+                mysqli_query($dbcon, $sql1);
+                echo '<meta http-equiv="refresh" content="0">';
+            }
         }
     }
     else
     {
-        echo "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+        //echo "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     }
 ?>
 </html>
