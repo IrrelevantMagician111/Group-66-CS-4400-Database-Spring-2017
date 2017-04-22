@@ -146,6 +146,7 @@
 				<button type = "submit" name = "filter" form ="form-main" class="btn btn-indigo">Apply Filter</button>
 			</div>
             </form>
+
             <?php
                 // create variable names
             @ $name = $_POST['LocName'];
@@ -157,103 +158,81 @@
             @ $eDate = $_POST['eDate'];
 
             $zip = trim($zip);
+            $name = trim($name);
 
-            if(!get_magic_quotes_gpc())
+            /*if(!get_magic_quotes_gpc())
             {
                 $name = addslashes($name);
                 $city = addslashes($city);
                 $state = addslashes($state);
-            }
+            }*/
 
             @   $db = new mysqli('localhost','root','password','cs4400');
                 $connected = !mysqli_connect_errno();
                 if($connected)
                 {
-                            if(isset($_POST['filter']) == 1)
+                            if(isset($_POST['filter']))
                             {
                                 echo $print_str="<p> ZEROZERO.</p>";
                                 //if(strlen($name) || strlen($city) || strlen($state) || $zip || $check || $sDate || $eDate)
                                 if(($name != 'POI Location Name')||($city != 'City')||($state != 'State')||($zip != '')||($check != '')||($check != '') || ($sDate!= '') || ($eDate != ''))
                                 {
                                     echo $print_str="<p> ONE.</p>";
-                                    $result = $db->query("SELECT `Name` `City` `State` `Zip_Code` `Flag` `Date_Flagged` FROM `poi`");
-                                    var_dump($result);
+                                    $result = $db->query("SELECT `Name`, `City`, `State`, `Zip_Code`, `Flag`, `Date_Flagged` FROM `poi`");
                                         while($row = $result -> fetch_assoc())
                                         {
                                             echo $print_str="<p> TWO.</p>";
-                                            if($name==$row['Name']||$city==$row['City']||$state==$row['State']||$zip==$row['Zip_Code']||$check==$row['Flag']|| (($dFlag=$row['Date_Flagged'] >= $sDate) && ($dFlag=$row['Date_Flagged'] <= $sDate)))
+                                            //$r = str_replace(' ','',$row['Name']); 
+                                            //$name = str_replace(' ','',$name); 
+                                            //$r = preg_replace('/\s+/','',$row['Name']);
+                                            //$name = preg_replace('/\s+/','',$name);
+                                            echo $print_str="<p> NEO.</p>";
+                                            if( (strcmp($name,$row[0]) == 0) || ($city === $row['City'])||($state === $row['State'])||($zip == $row['Zip_Code'])||      (($check == 'checked') && ($row['Flag'] == '1'))|| (($row['Date_Flagged'] >= $sDate) && ($row['Date_Flagged'] <= $eDate)))
                                             {
                                                 echo $print_str="<p> THREE.</p>";
                                                 
-                                                $name=$row['Name'];
+                                                //$name=$row['0'];
                                                 $city=$row['City'];
                                                 $state=$row['State'];
                                                 $zip=$row['Zip_Code'];
                                                 $flag=$row['Flag'];
                                                 $dateFlag=$row['Date_Flagged'];
                                                 
-                                                echo "<table class='table table-striped'>";
-                                                echo    "<thead>";
-                                                echo       "<tr>";
-                                                echo           "<th>Location Name</th>";
-                                                echo           "<th>City</th>";
-                                                echo           "<th>State</th>";
-                                                echo           "<th>Zip Code</th>";
-                                                echo           "<th>Flagged?</th>";
-                                                echo           "<th>Date Flagged</th>";
-                                                echo        "</tr>";
-                                                echo    "<thead>";
-                                                echo        "</tr>";
-                                                echo                "<th>name</th>";
-                                                echo                "<th>city</th>";
-                                                echo                "<th>state</th>";
-                                                echo               "<th>zip</th>";
-                                                echo                "<th>Flag</th>";
-                                                echo                "<th>dateFlag</th>";
-                                                echo            "</tr>";
-                                                echo        "</thead>";
-                                                echo "<tbody>";
+                                                 echo "<table class='table table-striped'>";  
+                                                 echo         "<thead>";
+                                                 echo         "</tr>";
+                                                 //echo               "<th>$name</th>";
+                                                 echo               "<th>$city</th>";
+                                                 echo               "<th>$state</th>";
+                                                 echo               "<th>$zip</th>";
+                                                 echo               "<th>$flag</th>";
+                                                 echo               "<th>$dateFlag</th>";
+                                                 echo           "</tr>";
+                                                 echo           "</thead>";
+                                                 echo      "</tbody>";
+                                            }
+                                            else
+                                            {
+                                                $print_str="<p>Please Select.</p>";
                                             }
                                         }
                                 }
                             }
                                         
                             else
-                            {   
-                                    
+                            {      
                                 echo $print_str="<p> ELEVEN.</p>";
-                                $result = $db->query("SELECT `Name` `City` `State` `Zip_Code` `Flag` `Date_Flagged` FROM `poi`");
+                                $result = $db->query("SELECT `Name`, `City`, `State`, `Zip_Code`, `Flag`, `Date_Flagged` FROM `poi`");
                                 echo $print_str="<p> TWELVE.</p>";
                                 while($row = $result -> fetch_assoc())
                                 {
-                                            $name=$row['Name'];
-                                            $city=$row['City'];
-                                            $state=$row['State'];
-                                            $zip=$row['Zip_Code'];
-                                            $flag=$row['Flag'];
-                                            $dateFlag=$row['Date_Flagged'];
-                                            
-                                            echo "<table class='table table-striped'>";
-                                            echo    "<thead>";
-                                            echo       "<tr>";
-                                            echo           "<th>Location Name</th>";
-                                            echo           "<th>City</th>";
-                                            echo           "<th>State</th>";
-                                            echo           "<th>Zip Code</th>";
-                                            echo           "<th>Flagged?</th>";
-                                            echo           "<th>Date Flagged</th>";
-                                            echo        "</tr>";
-                                            echo    "<thead>";
-                                            echo        "</tr>";
-                                            echo                "<th>name</th>";
-                                            echo                "<th>city</th>";
-                                            echo                "<th>state</th>";
-                                            echo               "<th>zip</th>";
-                                            echo                "<th>Flag</th>";
-                                            echo                "<th>dateFlag</th>";
-                                            echo            "</tr>";
-                                            echo        "</thead>";
-                                            echo "<tbody>";
+                                            //$name=$row['Name'];
+                                            //$city=$row['City'];
+                                            //$state=$row['State'];
+                                            //$zip=$row['Zip_Code'];
+                                            //$flag=$row['Flag'];
+                                            //$dateFlag=$row['Date_Flagged'];
+                                            echo $result;
                                 }
                             }
                 }       
@@ -290,7 +269,7 @@
                         {
                             if(isset($_POST['reset']))
                             { 
-                                $result = $db->query("SELECT `Name` `City` `State` `Zip_Code` `Flag` `Date_Flagged` FROM `poi`");
+                                $result = $db->query("SELECT `Name`, `City`, `State`, `Zip_Code`, `Flag`, `Date_Flagged` FROM `poi`");
 
                                 if(!$result)
                                 {
@@ -308,27 +287,19 @@
                                         $flag=$row['Flag'];
                                         $dateFlag=$row['Date_Flagged'];
                                         
-                                        echo "<table class='table table-striped'>";
-                                            echo   "<thead>";
-                                            echo       "<tr>";
-                                            echo           "<th>Location Name</th>";
-                                            echo           "<th>City</th>";
-                                            echo           "<th>State</th>";
-                                            echo           "<th>Zip Code</th>";
-                                            echo           "<th>Flagged?</th>";
-                                            echo           "<th>Date Flagged</th>";
-                                            echo        "</tr>";
-                                            echo    "<thead>";
-                                            echo        "</tr>";
-                                            echo                "<th>name</th>";
-                                            echo                "<th>city</th>";
-                                            echo                "<th>state</th>";
-                                            echo               "<th>zip</th>";
-                                            echo                "<th>Flag</th>";
-                                            echo                "<th>dateFlag</th>";
-                                            echo            "</tr>";
-                                            echo        "</thead>";
-                                            echo "<tbody>";
+                                       // echo "<table class='table table-striped'>";
+                                         echo "<table class='table table-striped'>";  
+                                         echo         "<thead>";
+                                         echo         "</tr>";
+                                         echo               "<th>$name</th>";
+                                         echo               "<th>$city</th>";
+                                         echo               "<th>$state</th>";
+                                         echo               "<th>$zip</th>";
+                                         echo               "<th>$flag</th>";
+                                         echo               "<th>$dateFlag</th>";
+                                         echo           "</tr>";
+                                         echo           "</thead>";
+                                         echo      "</tbody>";
                                     } 
                                 }      
                             }
@@ -340,6 +311,7 @@
         </div>
 	   </div>
         
+
 
         <div class="text-center">
             <button class="btn btn-indigo href=" choose_functionality_city_official%202.1.html"> </a>Back</button>

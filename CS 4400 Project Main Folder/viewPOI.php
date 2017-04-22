@@ -25,7 +25,7 @@ if(!get_magic_quotes_gpc())
 		{
 			if($name || $city || $state || $zip || $check || $sDate || $eDate)
 			{
-				$result = $db->query("SELECT `Name` `City` `State` `Zip_Code` `Flag` `Date_Flagged` FROM `poi`");
+				$result = $db->query("SELECT `Name`, `City`, `State`, `Zip_Code`,`Flag`, `Date_Flagged` FROM `poi`");
                     while($row = $result -> fetch_assoc())
                     {
                         if($name==$row['Name']||$city==$row['City']||$state==$row['State']||$zip==$row['Zip_Code']||$check==$row['Flag']|| (($dFlag=$row['Date_Flagged'] >= $sDate) && ($dFlag=$row['Date_Flagged'] <= $sDate)))
