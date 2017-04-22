@@ -3,7 +3,7 @@ function sortTable(n, id_name, row_sort_offset, num_column) {
   table = document.getElementById(id_name);
   switching = true;
   //Set the sorting direction to ascending:
-  dir = "asc"; 
+  dir = "asc";
   /*Make a loop that will continue until
   no switching has been done:*/
   while (switching) {
@@ -17,14 +17,17 @@ function sortTable(n, id_name, row_sort_offset, num_column) {
 	if(rows[0].getElementsByTagName("td")[n+1].className == "is-num-col")
 	{
 		sort_type = "number";
+        console.log("Sorting number");
 	}
 	else if(rows[0].getElementsByTagName("td")[n+1].className == "is-date-col")
 	{
 		sort_type = "date";
+        console.log("Sorting date");
 	}
 	else
 	{
 		sort_type = "string";
+        console.log("Sorting string");
 	}
 	if(sort_type == "string")
 	{
@@ -52,7 +55,7 @@ function sortTable(n, id_name, row_sort_offset, num_column) {
 		  }
 		}
 	}
-	else 
+	else
 	{
 		for (i = (row_sort_offset-1); i < (rows.length - 1); i++) {
 		  //start by saying there should be no switching:
@@ -78,16 +81,16 @@ function sortTable(n, id_name, row_sort_offset, num_column) {
 			  break;
 			}
 		  }
-		}	
+		}
 	}
-    
+
     if (shouldSwitch) {
       /*If a switch has been marked, make the switch
       and mark that a switch has been done:*/
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
       //Each time a switch is done, increase this count by 1:
-      switchcount ++; 
+      switchcount ++;
     } else {
       /*If no switching has been done AND the direction is "asc",
       set the direction to "desc" and run the while loop again.*/
@@ -97,5 +100,5 @@ function sortTable(n, id_name, row_sort_offset, num_column) {
       }
     }
   }
-  
+
 }

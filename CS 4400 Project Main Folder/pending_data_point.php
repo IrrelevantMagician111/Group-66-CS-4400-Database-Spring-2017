@@ -20,7 +20,7 @@ if(!$dbcon)
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Pending Off.</title>
+    <title>Pending Data Point</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
@@ -31,6 +31,7 @@ if(!$dbcon)
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/adminfunc.css" rel="stylesheet">
+    <link href="css/sort_style_pending.css" rel="stylesheet">
 </head>
 
 <body style="padding: 50px 100px;">
@@ -46,16 +47,25 @@ if(!$dbcon)
                     //"SELECT * FROM 'data_point' WHERE 'Approved'=2"
                     $query="SELECT * FROM data_point WHERE Accepted=2";
                     $result= mysqli_query($dbcon, $query) or die("Error getting data.");
-                    echo "<table class='table table-striped'>";
-                        echo "<thead>
+                    echo "<table class='table table-striped sortable' id='data-point-table'>";
+            ?>
+                        <thead>
+                            <!--<tr>
+                                <td></td>
+                                <td><div class='arrow-up prefix' onclick='sortTable(1, "data-point-table", 3, 11)'></div><div class='arrow-down prefix' onclick='sortTable(1, "data-point-table", 3, 11)'></div></td>
+                                <td><div class='arrow-up prefix' onclick='sortTable(2, "data-point-table", 3, 11)'></div><div class='arrow-down prefix' onclick='sortTable(2, "data-point-table", 3, 11)'></div></td>
+                                <td><div class='arrow-up prefix' onclick='sortTable(3, "data-point-table", 3, 11)'></div><div class='arrow-down prefix' onclick='sortTable(3, "data-point-table", 3, 11)'></div></td>
+                                <td class='is-num-col'><div class='arrow-up prefix ' onclick='sortTable(4, "data-point-table", 3, 11)'></div><div class='arrow-down prefix' onclick='sortTable(4, "data-point-table", 3, 11)'></div></td>
+                            </tr>-->
                             <tr>
                                 <th>Select</th>
                                 <th>POI Location</th>
                                 <th>Data Type</th>
                                 <th>Data Value</th>
-                                <th>Time&Date of Data Reading</th>
+                                <th>Time and Date of Data Reading</th>
                             </tr>
-                        </thead>";
+                        </thead>
+            <?php
                         echo "<tbody>";
                             while($row=mysqli_fetch_array($result, MYSQLI_ASSOC))
                             {
@@ -73,7 +83,7 @@ if(!$dbcon)
                                           <td>$data_type</td>
                                           <td>$data_value</td>
                                           <td>$date_recorded</td>
-                                      </tr>"; //<td><input type='text' name='daterec[]' class='txtField' id='daterec' value=$date_recorded></td>
+                                      </tr>";
                             }
                             ?>
                         </tbody>
@@ -108,6 +118,7 @@ if(!$dbcon)
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script type="text/javascript" src="js/sorttable.js"></script>
 </body>
 
 <?php
