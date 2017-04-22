@@ -32,34 +32,27 @@
         </div>
 
         <!--Body-->
-		<form action="newPOIloc.php" method="post">
+		<form action="newPOIloc.php" method="post" id="form">
 			<div class="md-form">
 				<i class="fa fa-map-marker prefix"></i>
-				<input type="text" id="form3" class="form-control">
+				<input type="text" id="form3" name="name" class="form-control">
 				<label for="form3">POI Location Name</label>
 			</div>
 
-			<div class="dropdown">
-				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					City
-				</button>
-				<div class="dropdown-menu" aria-labelledby="City">
-					<a class="dropdown-item" href="#">Atlanta</a>
-					<a class="dropdown-item" href="#">Savannah</a>
-				</div>
-			</div>
+			<select class="btn btn-secondary" id="user-type-select" form="form" name="city" aria-labelledby="City" >
+				<option selected disabled>City</option>
+				<option value="City Official">City Official</option>
+				<option value="City Scientist">City Scientist</option>
+			</select>
 
-			<div class="dropdown">
-				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					State
-				</button>
-				<div class="dropdown-menu" aria-labelledby="State">
-					<a class="dropdown-item" href="#">Georgia</a>
-				</div>
-			</div>
+			<select class="btn btn-secondary" form="form" id="user-type-select" name="state" aria-labelledby="State">
+				<option selected disabled>State</option>
+				<option value="City Official">City Official</option>
+				<option value="City Scientist">City Scientist</option>
+			</select>
 
 			<div class="md-form">
-				<input type="text" id="form4" class="form-control">
+				<input type="text" id="form4" name="zip" class="form-control">
 				<label for="form4">Zip Code</label>
 			</div>
 

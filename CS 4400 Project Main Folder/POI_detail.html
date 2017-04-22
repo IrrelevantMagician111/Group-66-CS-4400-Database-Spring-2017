@@ -82,6 +82,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="md-form">
+							<i class="fa fa-calendar prefix" aria-hidden="true"></i>
 							<input placeholder="Enter Date" type="text" id="date-format1" name="begin" class="form-control floating-label">
 							<label for="date-format1">Beginning Date</label>
 						</div>
@@ -110,20 +111,14 @@
 				</tr>
 			  </thead>
 			  <tbody>
+				<?php 
+					echo "<tr>";
+					echo "<th scope="row">1</th>";
+				?>
 				<tr>
-				  <th scope="row">1</th>
+				  
 				  <td>Mark</td>
 				  <td>Otto</td>
-				</tr>
-				<tr>
-				  <th scope="row">2</th>
-				  <td>Jacob</td>
-				  <td>Thornton</td>
-				</tr>
-				<tr>
-				  <th scope="row">3</th>
-				  <td>Larry</td>
-				  <td>the Bird</td>
 				</tr>
 			  </tbody>
 			</table>
@@ -184,8 +179,6 @@
             });
 
             $('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
-
-            $material.init()
         });
     </script> 
 	 
