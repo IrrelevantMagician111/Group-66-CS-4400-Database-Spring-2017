@@ -129,14 +129,14 @@
 			<div class="md-form">
 			  <div class="form-control-wrapper">
 				<input name = "sDate" placeholder="" type="text" id="date-format1" class="form-control floating-label">
-				<label for="date-format1">dd/mm/yyy</label>
+				<label for="date-format1">dd/mm/yyyy</label>
 			  </div>
 			</div>
 
 			<div class="md-form">
 			  <div class="form-control-wrapper">
 				<input name = "eDate" placeholder="" type="text" id="date-format2" class="form-control floating-label">
-				<label for="date-format2">dd/mm/yyy</label>
+				<label for="date-format2">dd/mm/yyyy</label>
 			  </div>
 			</div>
 			
@@ -160,136 +160,113 @@
             $zip = trim($zip);
             $name = trim($name);
 
-            /*if(!get_magic_quotes_gpc())
+            if(!get_magic_quotes_gpc())
             {
                 $name = addslashes($name);
                 $city = addslashes($city);
                 $state = addslashes($state);
-            }*/
+            }
 
             @   $db = new mysqli('localhost','root','password','cs4400');
                 $connected = !mysqli_connect_errno();
                 if($connected)
                 {
-                            if(isset($_POST['filter']))
+                    if(isset($_POST['filter']))
+                    {
+
+                        if(($name === 'POI LOCATION NAME')&&($city === 'CITY')&&($state === 'STATE')&&($zip =='')&&($check =='')&&($sDate== '')&&($eDate ==''))
+                        {
+                            $print_str="<p>Please Select.</p>";
+                            echo $print_str="<p> ZEROZERO.</p>";
+                        }
+                        else
+                        {
+                            echo $print_str="<p> ONE.</p>";
+                            $result = $db->query("SELECT * poi WHERE Name = $name or City = $city or State = $state or Zip_Code = $zip or Flag = $check or Date_Flagged >= $sDate and Date_Flagged <= $eDate"); 
+                            $num_results_loc = $result->num_rows;   
+
+                            for($i = 0; $i <$num_results_loc; $i++)
                             {
-                                echo $print_str="<p> ZEROZERO.</p>";
-                                //if(strlen($name) || strlen($city) || strlen($state) || $zip || $check || $sDate || $eDate)
-                                if(($name != 'POI Location Name')||($city != 'City')||($state != 'State')||($zip != '')||($check != '')||($check != '') || ($sDate!= '') || ($eDate != ''))
-                                {
-                                    echo $print_str="<p> ONE.</p>";
-                                    $result = $db->query("SELECT `Name`, `City`, `State`, `Zip_Code`, `Flag`, `Date_Flagged` FROM `poi`");
-                                        while($row = $result -> fetch_assoc())
-                                        {
-                                            echo $print_str="<p> TWO.</p>";
-                                            //$r = str_replace(' ','',$row['Name']); 
-                                            //$name = str_replace(' ','',$name); 
-                                            //$r = preg_replace('/\s+/','',$row['Name']);
-                                            //$name = preg_replace('/\s+/','',$name);
-                                            echo $print_str="<p> NEO.</p>";
-                                            if( (strcmp($name,$row[0]) == 0) || ($city === $row['City'])||($state === $row['State'])||($zip == $row['Zip_Code'])||      (($check == 'checked') && ($row['Flag'] == '1'))|| (($row['Date_Flagged'] >= $sDate) && ($row['Date_Flagged'] <= $eDate)))
-                                            {
-                                                echo $print_str="<p> THREE.</p>";
-                                                
-                                                //$name=$row['0'];
-                                                $city=$row['City'];
-                                                $state=$row['State'];
-                                                $zip=$row['Zip_Code'];
-                                                $flag=$row['Flag'];
-                                                $dateFlag=$row['Date_Flagged'];
-                                                
-                                                 echo "<table class='table table-striped'>";  
-                                                 echo         "<thead>";
-                                                 echo         "</tr>";
-                                                 //echo               "<th>$name</th>";
-                                                 echo               "<th>$city</th>";
-                                                 echo               "<th>$state</th>";
-                                                 echo               "<th>$zip</th>";
-                                                 echo               "<th>$flag</th>";
-                                                 echo               "<th>$dateFlag</th>";
-                                                 echo           "</tr>";
-                                                 echo           "</thead>";
-                                                 echo      "</tbody>";
-                                            }
-                                            else
-                                            {
-                                                $print_str="<p>Please Select.</p>";
-                                            }
-                                        }
-                                }
+                                $row = $result->fetch_assoc();                                
+                                 echo "<table class='table table-striped'>";  
+                                 echo         "<thead>";
+                                 echo         "</tr>";
+                                 echo               "<th>$name</th>";
+                                 echo               "<th>$city</th>";
+                                 echo               "<th>$state</th>";
+                                 echo               "<th>$zip</th>";
+                                 echo               "<th>$check</th>";
+                                 echo               "<th>$result[Date_Flagged]</th>";
+                                 echo           "</tr>";
+                                 echo           "</thead>";
+                                 echo      "</tbody>";
+                                      
                             }
-                }       
+                        }    
+                    }
+                }     
             ?>
                     
 
-                    <form action = "viewPOI1111.php" method = "post" id="form-main">
-                    <div class="text-left">
-                        <button type = "submit" name = "reset" form = "form-main" class="btn btn-indigo" >Reset Filter </button>
-                    </div>
-                    </form>
-                    <?php
-                        // create variable names
-                    @ $name = $_POST['LocName'];
-                    @ $city = $_POST['City'];
-                    @ $state = $_POST['State'];
-                    @ $zip = $_POST['Zip'];
-                    @ $check = $_POST['Check'];
-                    @ $sDate = $_POST['sDate'];
-                    @ $eDate = $_POST['eDate'];
+            <form action = "viewPOI1111.php" method = "post" id="form-main">
+            <div class="text-left">
+                <button type = "submit" name = "reset" form = "form-main" class="btn btn-indigo" >Reset Filter </button>
+            </div>
+            </form>
+            <?php
+                // create variable names
+           
 
-                    $zip = trim($zip);
+            if(!get_magic_quotes_gpc())
+            {
+                $name = addslashes($name);
+                $city = addslashes($city);
+                $state = addslashes($state);
+            }
 
-                    if(!get_magic_quotes_gpc())
-                    {
-                        $name = addslashes($name);
-                        $city = addslashes($city);
-                        $state = addslashes($state);
-                    }
+            @   $db = new mysqli('localhost','root','password','cs4400');
+                $connected = !mysqli_connect_errno();
+                if($connected)
+                {
+                    if(isset($_POST['reset']))
+                    { 
+                        $result = $db->query("SELECT `Name`, `City`, `State`, `Zip_Code`, `Flag`, `Date_Flagged` FROM `poi`");
+                        $num_results_loc = $result->num_rows;
 
-                    @   $db = new mysqli('localhost','root','password','cs4400');
-                        $connected = !mysqli_connect_errno();
-                        if($connected)
+                        if(!$result)
                         {
-                            if(isset($_POST['reset']))
-                            { 
-                                $result = $db->query("SELECT `Name`, `City`, `State`, `Zip_Code`, `Flag`, `Date_Flagged` FROM `poi`");
-
-                                if(!$result)
-                                {
-                                    $print_str="<p>Query Failed.</p>";
-                                }
-                                 
-                                else
-                                {   
-                                    while($row = $result -> fetch_assoc())
-                                    {       
-                                        $name=$row['Name'];
-                                        $city=$row['City'];
-                                        $state=$row['State'];
-                                        $zip=$row['Zip_Code'];
-                                        $flag=$row['Flag'];
-                                        $dateFlag=$row['Date_Flagged'];
-                                        
-                                       // echo "<table class='table table-striped'>";
-                                         echo "<table class='table table-striped'>";  
-                                         echo         "<thead>";
-                                         echo         "</tr>";
-                                         echo               "<th>$name</th>";
-                                         echo               "<th>$city</th>";
-                                         echo               "<th>$state</th>";
-                                         echo               "<th>$zip</th>";
-                                         echo               "<th>$flag</th>";
-                                         echo               "<th>$dateFlag</th>";
-                                         echo           "</tr>";
-                                         echo           "</thead>";
-                                         echo      "</tbody>";
-                                    } 
-                                }      
+                            $print_str="<p>Query Failed.</p>";
+                        }
+                         
+                        else
+                        {      
+                            for($i = 0; $i <$num_results_loc; $i++)
+                            {
+                                $row = $result->fetch_assoc();
+                                $n = $row['Name'];
+                                $c =$row['City'];
+                                $s =$row['State'];
+                                $z =$row['Zip_Code'];
+                                $f =$row['Flag'];
+                                $df=$row['Date_Flagged'];
+                                // echo "<table class='table table-striped'>";
+                                echo "<table class='table table-striped'>";  
+                                echo         "<thead>";
+                                echo         "</tr>";
+                                echo               "<th>$n</th>";
+                                echo               "<th>$c</th>";
+                                echo               "<th>$s</th>";
+                                echo               "<th>$z</th>";
+                                echo               "<th>$f</th>";
+                                echo               "<th>$df</th>";
+                                echo           "</tr>";
+                                echo           "</thead>";
+                                echo      "</tbody>";
                             }
+                        }      
+                    }
                 }      
             ?>
-            
-            
 			
         </div>
 	   </div>
