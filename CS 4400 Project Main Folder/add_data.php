@@ -25,7 +25,7 @@
 
 <body style="padding: 50px 390px 50px 390px; position: fixed;">
 
-
+        <!-- Make data pending -->
          <!-- Form with header-->
         <div class="card">
         <div class="card-block">
@@ -82,7 +82,7 @@
         <div class="flex-container">
             <div class="flex-item">Time and date of reading:</div>
             <div class="flex-item-cal">
-            <div class="row" style="margin-right: -189px">
+            <div class="row" style="margin-right: -160px; margin-left: -70px;">
                 <div class="col-md-6">
                     <div class="form-control-wrapper">
                         <input type="text" id="date-format" class="form-control floating-label" placeholder=" / /  " name="date_time">
@@ -112,7 +112,7 @@
 
         <div class="flex-container">
             <span class="flex-item">Data value:</span>
-            <block style="margin-top: 25px; margin-left: -140px;" id="datavalue"><input type="text" name="data_value"></block>
+            <block style="margin-top: 25px; margin-left: -280px;" id="datavalue"><input type="text" name="data_value"></block>
         </div>
 
         <!--Footer-->
@@ -167,7 +167,7 @@
             }
             else
             {
-                echo 'Done. Domo my dude';
+                echo 'Done. Thanks my dude';
                 echo '<meta http-equiv="refresh" content="5">';
             }
             $result->close();
