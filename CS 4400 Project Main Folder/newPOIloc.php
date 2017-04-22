@@ -1,15 +1,14 @@
 <?php
 	
-	@ $name = $_POST['name'];
-	@ $city = $_POST['city'];
-	@ $state = $_POST['state'];
-	@ $zip = $_POST['zip'];
-
-	//if(!$name || !$zip || $city || $state)
-	//{
-	//	echo 'Enter all details';
-	//	exit;
-	//}
+	 $name = $_POST['name'];
+	 $city = $_POST['city'];
+	 $state = $_POST['state'];
+	 $zip = $_POST['zip'];
+	$print_str = '';
+	if(!strlen($name))
+	{
+		$print_str = '<p>Must choose a POI Loaction.</p>';
+	}
 
 	if(!get_magic_quotes_gpc())
 	{
