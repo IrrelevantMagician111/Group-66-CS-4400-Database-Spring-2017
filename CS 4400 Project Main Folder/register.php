@@ -36,7 +36,7 @@
         </div>
 
         <!--Body-->
-        <form action="http://localhost:8888/register.php" method="post">
+        <form action="register.php" method="post">
 
         <!-- Username -->
         <div class="flex-container">
@@ -61,26 +61,40 @@
             <span class="flex-item">Confirm Password</span>
             <block style="margin-top: 25px; margin-left: -40px;" id="datavalue"><input type="text" name="confirm_password"></block>
         </div>
+		
+		<script>
+			function onCityOfficial(event)
+			{
+				var userType = document.getElementById('user-type-select').value;
+				if(userType==="City_Official")
+				{
+					document.getElementById('city-stuff').style.display = "block";
+				}
+				else
+				{
+					document.getElementById('city-stuff').style.display = "none";
+				}
+			}	
+		</script>
 
         <!-- User Type -->
         <div>
            <span>User Type</span>
            <block class="dropdown" style="margin-left: 80px;">
-            <select name="user_type">
+            <select name="user_type" id = "user-type-select" onchange="onCityOfficial()">
             <option value="" disabled selected>User Type</option>
             <option type="text" value="City_Official">City Official</option>
-            <option type="text" value="Admin">Admin</option>
             <option type="text" value="City_Scientist">City Scientist</option>
             </select>
           </block>
           <div style="clear:both"></div>
         </div>
         </br>
-
-        <div class="blockotext"><span>Fill out this part if you choose city official</span>
+		
+        <div class="blockotext">
         </div>
         <!-- For city official -->
-        <div class="flex-container2">
+        <div class="flex-container2" id="city-stuff" style="display: none;">
 
         <!-- City Dropdown -->
         <div class="flex-item" style="margin-left:40px;">
@@ -117,7 +131,6 @@
         	<span style="margin-right:10px;">State</span>
             <block class="dropdown">
             <?php
-            	//$mysqli = new mysqli("localhost:8889", "master_user", "password", "CS4400");
             	$result = $mysqli->query("SELECT `State` FROM `City_State`");
             	if ($result) {
 			    	echo '<select name="state" class="mdb-select">';
@@ -152,7 +165,7 @@
         <!--Footer-->
         <div>
             <!--Create-->
-            <button style="margin-left: 150px;" type="submit" name="submit" value="1" class="btn btn-dark-green">Create</button>
+            <button style="margin-left: 150px;" type="submit" name="submit" href="login.html" value="1" class="btn btn-dark-green">Create</button>
         </div>
       </div>
     </div>
@@ -160,16 +173,16 @@
 
        <?php
         
-        $submit = $_POST['submit']; 
-       	$username = $_POST['username'];
-        $email_address =$_POST['email_address'];    
-        $password = $_POST['password']; 
-        $confirm_password = $_POST['confirm_password'];
-        $user_type = $_POST['user_type'];
-        $city = $_POST['city'];
-        $state = $_POST['state'];
-        $title = $_POST['title'];
-        $box = "City_Official";
+        @$submit = $_POST['submit']; 
+       	@$username = $_POST['username'];
+        @$email_address =$_POST['email_address'];    
+        @$password = $_POST['password']; 
+        @$confirm_password = $_POST['confirm_password'];
+        @$user_type = $_POST['user_type'];
+        @$city = $_POST['city'];
+        @$state = $_POST['state'];
+        @$title = $_POST['title'];
+        @$box = "City_Official";
 
         if(($submit)&((!$username)|(!$email_address)|(!$password)|(!$confirm_password)|(!$user_type)))
         {
@@ -204,7 +217,7 @@
 			        }
 			        else
 			        {
-			        	$db = new mysqli("localhost:8889","master_user","password","CS4400");
+			        	$db = new mysqli("localhost","root","password","CS4400");
 			        	if ($db->connect_errno) {
 					        echo 'Error: Could not connect to database. Please try again later.';
 					        exit; 
@@ -237,7 +250,7 @@
 		        /* Normal user entry */
 		        else
 		        {
-		            $db = new mysqli("localhost:8889","master_user","password","CS4400");
+		            $db = new mysqli("localhost","root","password","CS4400");
 				    if ($db->connect_errno) {
 				        echo 'Error: Could not connect to database. Please try again later.';
 				        exit; 
