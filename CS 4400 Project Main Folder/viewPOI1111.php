@@ -2,6 +2,7 @@
 <html lang="en">
 <?php 
 	@$flag_name = $_GET['name'];
+	echo "<p>".$flag_name."</p>";
 	if (strlen($flag_name))
 	{
 		if(!get_magic_quotes_gpc())
@@ -17,14 +18,21 @@
 			$row = $result->fetch_assoc();
 			$current_flag = (int)$row['Flag'];
 			echo "<p>".$current_flag."</p>";
+			date_default_timezone_set('America/New_York');
+			$date_flagged = date('Y-m-d');
+			echo "<p>".$date_flagged."</p>";
 			if($current_flag)
 			{
-				$query_write = "UPDATE `poi` SET `Flag` = '0' WHERE `Name` = '".$flag_name."'";
+				$query_write = "UPDATE `poi` SET `Flag` = 0, `Date_Flagged` = '".$date_flagged."' WHERE `Name` = '".$flag_name."'";
+				$current_flag = 0;
 			}
 			else
 			{
-				$query_write = "UPDATE `poi` SET `Flag` = '1' WHERE `Name` = '".$flag_name."'";
+				$query_write = "UPDATE `poi` SET `Flag` = 1, `Date_Flagged` = '".$date_flagged."' WHERE `Name` = '".$flag_name."'";
+				$current_flag = 1;
 			}
+			$result = $db->query($query_write);
+			echo "<p>".$current_flag."</p>";
 		}
 	}
 ?>
@@ -416,7 +424,7 @@
                                  echo           "</thead>";*/
 
                                  echo "<tr>" ;
-                                echo "<td> <a href='http://localhost/Group-66-CS-4400-Database-Spring-2017/CS%204400%20Project%20Main%20Folder/blank.php?name=$name'>$name</a></td>";
+                                echo "<td> <a href='POI_detail.php?name=$name'>$name</a></td>";
                                 ?>
                                 <td><center><Strong><?php echo $city; ?></Strong></center></td>
                                 <td><center><Strong><?php echo $state; ?></Strong></center></td>
@@ -456,7 +464,7 @@
                                 echo           "</tr>";*/
             
                                     echo "<tr>" ;
-                                    echo "<td> <a href='http://localhost/CS%204400%20Project%20Main%20Folder/POI_detail.php?name=$name'>$name</a></td>";
+                                    echo "<td> <a href='POI_detail.php?name=$name'>$name</a></td>";
                                     ?>
                                     <td><center><Strong><?php echo $city; ?></Strong></center></td>
                                     <td><center><Strong><?php echo $state; ?></Strong></center></td>
@@ -475,7 +483,6 @@
                 }     
             ?>
             </tbody>
-
 		<form action = "http://localhost/Group-66-CS-4400-Database-Spring-2017/CS%204400%20Project%20Main%20Folder/choose_functionality_city_official%202.1.html"      method = "post";>
         <div class="text-center">
             <button class="btn btn-indigo">  <a href="choose_functionality_city_official%202.1.html"> Back</a></button>

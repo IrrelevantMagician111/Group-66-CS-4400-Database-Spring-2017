@@ -3,11 +3,11 @@
 	@   $db = new mysqli('localhost','root','password','cs4400');
 		$connected = !mysqli_connect_errno();
 		@$name = $_GET['name'];
-		@$data_type = $_POST['data_type'];
-		@$data_min = $_POST['min'];
-		@$data_max = $_POST['max'];
-		@$end_date = $_POST['end'];
-		@$begin_date = $_POST['begin'];
+		@$data_type = $_GET['data_type'];
+		@$data_min = $_GET['min'];
+		@$data_max = $_GET['max'];
+		@$end_date = $_GET['end'];
+		@$begin_date = $_GET['begin'];
 		
 		if(!get_magic_quotes_gpc())
 		{
@@ -19,16 +19,20 @@
 			$begin_date = addslashes($begin_date);
 		}
 		
-		$improper_filter_data = (strlen($data_min)&&!strlen($data_max))||(!strlen($data_min)&&!strlen($data_max));
+		$improper_filter_data = (strlen($data_min)&&!strlen($data_max))||(!strlen($data_min)&&strlen($data_max));
 		$improper_filter_date = (strlen($end_date)&&!strlen($begin_date))||(!strlen($end_date)&&strlen($begin_date));
 		$filter_data = strlen($data_min)&&strlen($data_max);
 		$filter_date = strlen($end_date)&&strlen($begin_date);
 		$filter_data_type = strlen($data_type);
-		
-		if(!get_magic_quotes_gpc())
+		if($improper_filter_data)
 		{
-			
+			 echo '<script type="text/javascript">alert("Error: Please fill out both fields to sort by data values.");</script>';
 		}
+		else if ($improper_filter_date)
+		{
+			 echo '<script type="text/javascript">alert("Error: Please fill out both fields to sort by date flagged.");</script>';
+		}
+		else{}
 ?>
 <html lang="en">
 
@@ -80,12 +84,18 @@
 		$results = $db->query($query);
 		$row = $results->fetch_assoc();
 		$row['Flag'] = (int)$row['Flag'];
+		$flag_str;
 		if($row['Flag'])
 		{
 			echo '<div style="display: flex;justify-content: flex-end"> 
 					<p></p>
 					<h1><i class="fa fa-flag-o" aria-hidden="true" ></i></h1>
 				</div>';
+			$flag_str = "Unflag";
+		}
+		else
+		{
+			$flag_str = "Flag";
 		}
 	?>
 	
@@ -103,7 +113,8 @@
 
 				<!--Body-->
 				
-				<form action="POI_detail.php" method="post" id="form-main">
+				<form action="POI_detail.php" method="get" id="form-main">
+				<?php	echo '<input type="hidden" name="name" value="'.$name.'">'; ?>
 				<div class="btn-group dropup">
 					<select class="btn btn-secondary" name="data_type" for="form-main" aria-labelledby="Data Type">
 						<option selected disabled>Data Type</option>
@@ -274,7 +285,7 @@
 		</div>
 		<div class="text-center">
 				<a type="submit" class="btn btn-outline-info waves-effect" href="viewPOI1111.php">Back</a>
-				<a type="submit" class="btn btn-outline-warning waves-effect" href="viewPOI1111.php?name=$name">Flag</a>
+				<?php	echo '<a type="submit" class="btn btn-outline-warning waves-effect" href="viewPOI1111.php?name='.$name.'">'.$flag_str.'</a>'; ?>
 			</form>
 		</div>
 	</div>

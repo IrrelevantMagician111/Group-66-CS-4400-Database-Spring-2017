@@ -61,7 +61,7 @@
 					if(!strcmp(stripslashes($row['User_Type']),"City_Scientist"))
 					{
 						ob_start();
-						header('Location:  adddata.html');
+						header('Location:  add_data.php');
 						ob_end_flush();
 						die();
 					}
