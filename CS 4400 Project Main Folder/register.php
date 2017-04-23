@@ -242,8 +242,11 @@
 			            }
 			            else
 			            {
-			                echo '<script type="text/javascript">alert("Done: Thanks my dude");</script>';
-			                echo '<meta http-equiv="refresh" content="5">';
+			               // echo '<script type="text/javascript">alert("Done: Thanks my dude");</script>';
+			              ob_start();
+							header('Location: login.html');
+						  ob_end_flush();
+							die();
 			            }
 		        	}
 		        }
@@ -265,8 +268,12 @@
 		            }
 		            else
 		            {
-		                echo '<script type="text/javascript">alert("Done: Thanks my dude");</script>';
-		                echo '<meta http-equiv="refresh" content="5">';
+		                //echo '<script type="text/javascript">alert("Done: Thanks my dude");</script>';
+		                ob_start();
+						header('Location: login.html');
+						ob_end_flush();
+						die();
+
 		            }
 		        }
 
