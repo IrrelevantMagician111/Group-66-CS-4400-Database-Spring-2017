@@ -21,20 +21,6 @@
     <link rel="stylesheet" href="./css/bootstrap-material-datetimepicker.css" />
 
 
-  <script>
-    $(function() {
-      
-      $("#datepicker, #datepicker2").datepicker({
-        onSelect: function(dateText, inst) { 
-          $(this).prev()[0].value = dateText;
-        }
-      });
-    
-    
-  });
-  </script>
-
-
 </head>
 
 <body>
@@ -421,18 +407,23 @@
     <script type="text/javascript" src="js/mdb.min.js"></script>
 
     <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script> 
-    <script type="text/javascript" src="./js/bootstrap-material-datetimepicker.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" src="js/bootstrap-material-datetimepicker.js"></script>
+    <!--<script type="text/javascript">
       $('#date-format1,#date-format2').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
 
      
       *$('table.table tr').click(function yourEvent(){
             window.location.href = $(this).data("http://localhost/Group-66-CS-4400-Database-Spring-2017/CS%204400%20Project%20Main%20Folder/POI_detail.html")
-      ;});*/
+      ;});*/-->
 
     
        
 
+    </script>
+
+
+  <script type="text/javascript">
+        $('#date-format1,#date-format2').bootstrapMaterialDatePicker({ time: false, format : 'YYYY-DD-MM' });
     </script>
 
   
