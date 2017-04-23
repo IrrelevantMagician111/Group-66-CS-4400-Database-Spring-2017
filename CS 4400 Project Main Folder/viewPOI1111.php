@@ -1,6 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php 
+	@$flag_name = $_GET['name'];
+	if (strlen($flag_name))
+	{
+		if(!get_magic_quotes_gpc())
+		{
+			$flag_name = addslashes($flag_name);
+		}
+		@   $db = new mysqli('localhost','root','password','cs4400');
+		$connected = !mysqli_connect_errno();
+		if($connected)
+		{
+			$query_read = "SELECT `Flag` FROM `poi` WHERE `Name` = '".$flag_name."'";
+			$result = $db->query($query_read);
+			$row = $result->fetch_assoc();
+			$current_flag = (int)$row['Flag'];
+			echo "<p>".$current_flag."</p>";
+			if($current_flag)
+			{
+				$query_write = "UPDATE `poi` SET `Flag` = '0' WHERE `Name` = '".$flag_name."'";
+			}
+			else
+			{
+				$query_write = "UPDATE `poi` SET `Flag` = '1' WHERE `Name` = '".$flag_name."'";
+			}
+		}
+	}
+?>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,7 +51,7 @@
 </head>
 
 <body>
-<form action = "http://localhost/Group-66-CS-4400-Database-Spring-2017/CS%204400%20Project%20Main%20Folder/viewPOI1111.php" method = "post">
+<form action = "http://localhost/cs%204400%20project%20main%20folder/viewPOI1111.php" method = "post">
 
     <!-- /Start your project here-->
     <!--Form with header-->

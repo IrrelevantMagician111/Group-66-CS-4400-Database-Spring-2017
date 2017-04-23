@@ -2,6 +2,8 @@
 <?php 
 	@   $db = new mysqli('localhost','root','password','cs4400');
 		$connected = !mysqli_connect_errno();
+		@$change_flag = $_POST['change_flag'];
+		echo "<p>".$change_flag."</p>";
 		$name = $_GET['name'];
 		@$data_type = $_POST['data_type'];
 		@$data_min = $_POST['min'];
@@ -123,18 +125,19 @@
 						</div>
 					</div>
 				</div>
-
 				<button class="btn btn-outline-success btn-rounded waves-effect" type="submit" form="form-main">Apply Filter</button>
-				<button class="btn btn-outline-info btn-rounded waves-effect">Reset Filter</button>
+				<button class="btn btn-outline-info btn-rounded waves-effect" href="POI_detail.php">Reset Filter</button>
 				</form>
 			</div>
 		</div>
 	</div>
+	
 		<div class="center-container">
 			<div class="card">
-				<div class="">
+			<h1 class="h1-responsive"><?php echo $name."'s ";?>Data Points</h1>
+				<div class="card-block">
 					<ul class="animated fadeInUp card">
-						<li><h1 class="h1-responsive"><?php echo $name."'s ";?>Data Points</h1></li>
+						
 						<table class="table table-striped">
 						  <thead>
 							<tr>
@@ -216,12 +219,13 @@
 								{
 									$query = $query."(`Data_Type` = '".$data_type."') AND ";
 								}
-								if(!($filter_data_type||$filter_data||$filter_date)){
-									$query = "SELECT `Data_Type`, `Data_Value`, `Date_Recorded` FROM `data_point` AND`";
-								}
-								$query = substr_replace($query, '', -4);
+								$query = $query." `data_point`.`name` = '".$name."' ";
+								//$query = substr_replace($query, '', -4);
 								$query = $query."ORDER BY `Date_Recorded` DESC";
 								echo "<p>".$query."</p>";
+								if(!($filter_data_type||$filter_data||$filter_date)){
+									$query = "SELECT `Data_Type`, `Data_Value`, `Date_Recorded` FROM `data_point` WHERE `data_point`.`name` ='".$name."'";
+								}
 								$results = $db->query($query);
 								$num_results = $results->num_rows;
 								for($i = 0; $i < $num_results; $i++)
@@ -237,10 +241,13 @@
 						  </tbody>
 						</table>
 					</ul>
-					<button type="button" href ="" class="btn btn-outline-info waves-effect">Back</button>
-					<button type="button" class="btn btn-outline-warning waves-effect">Flag</button>
 				</div>
 			</div>
+		</div>
+		<div class="text-center">
+				<a type="submit" class="btn btn-outline-info waves-effect" href="viewPOI1111.php">Back</a>
+				<a type="submit" class="btn btn-outline-warning waves-effect" href="viewPOI1111.php?name=$name">Flag</a>
+			</form>
 		</div>
 	</div>
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
