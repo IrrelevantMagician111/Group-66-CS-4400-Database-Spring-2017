@@ -374,7 +374,7 @@
                                 echo           "</tr>";*/
             
                                     echo "<tr>" ;
-                                    echo "<td> <a href='http://localhost/Group-66-CS-4400-Database-Spring-2017/CS%204400%20Project%20Main%20Folder/blank.php?x=$name'>$name</a></td>";
+                                    echo "<td> <a href='http://localhost/CS%204400%20Project%20Main%20Folder/POI_detail.php?name=$name'>$name</a></td>";
                                     ?>
                                     <td><center><Strong><?php echo $city; ?></Strong></center></td>
                                     <td><center><Strong><?php echo $state; ?></Strong></center></td>

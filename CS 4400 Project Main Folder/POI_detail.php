@@ -2,6 +2,7 @@
 <?php 
 	@   $db = new mysqli('localhost','root','password','cs4400');
 		$connected = !mysqli_connect_errno();
+		$name = $_GET['name'];
 		@$data_type = $_POST['data_type'];
 		@$data_min = $_POST['min'];
 		@$data_max = $_POST['max'];
@@ -19,7 +20,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Insert POI Location Name here</title>
+    <?php echo "<title>".$name."</title>"; ?>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
@@ -133,7 +134,7 @@
 			<div class="card">
 				<div class="">
 					<ul class="animated fadeInUp card">
-						<li><h1 class="h1-responsive">Data Points</h1></li>
+						<li><h1 class="h1-responsive"><?php echo $name."'s ";?>Data Points</h1></li>
 						<table class="table table-striped">
 						  <thead>
 							<tr>
