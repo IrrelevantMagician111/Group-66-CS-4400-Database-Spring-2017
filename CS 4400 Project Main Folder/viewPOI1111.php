@@ -38,6 +38,7 @@
 </head>
 
 <body>
+<form action = "http://localhost/Group-66-CS-4400-Database-Spring-2017/CS%204400%20Project%20Main%20Folder/viewPOI1111.php" method = "post">
 
     <!-- /Start your project here-->
     <!--Form with header-->
@@ -64,7 +65,8 @@
 
                         while($row = $result -> fetch_assoc())
                         {
-                             echo "<option value=\"loc\">" .$row['Name'] ."</option>";
+                            $y = $row['Name'];
+                            echo "<option>  $y </option>";
                         }
                 
                     ?>
@@ -86,7 +88,8 @@
 
                         while($row = $result -> fetch_assoc())
                         {
-                             echo "<option value = \"Cityy\">" .$row['City'] ."</option>";
+                            $x = $row['City'];
+                             echo "<option> $x </option>";
                         }
                 
                     ?>
@@ -107,7 +110,8 @@
 
                         while($row = $result -> fetch_assoc())
                         {
-                             echo "<option value = \"statee\">".$row['State'] ."</option>";
+                            $z = $row['State'];
+                            echo "<option> $z </option>";
                         }
                 
                     ?>
@@ -121,7 +125,7 @@
 
 			 <div class="text-center">
 				<fieldset class="form-group">
-					<input name= "Check" type="checkbox" id="checkbox1">
+					<input value = "1"; name= "Check" type="checkbox" id="checkbox1">
 					<label for="checkbox1">Flagged?</label>
 				</fieldset>
 			</div>
@@ -141,12 +145,26 @@
 			</div>
 			
 		  
-            <form action = "viewPOI1111.php" method = "post" id="form-main">
 			<div class="text-left">
-				<button type = "submit" name = "filter" form ="form-main" class="btn btn-indigo">Apply Filter</button>
+				<button type = "submit" name = "filter" class="btn btn-indigo">Apply Filter</button>
 			</div>
-            </form>
 
+            <div class="text-left">
+                <button type = "submit" name = "reset"  class="btn btn-indigo" >Reset Filter </button>
+            </div>
+            
+            <table class='table table-striped'>
+            <thead>
+            <tr>
+                <td>Name</td>
+                <td>City</td>
+                <td>State</td>
+                <td>Zip Code</td>
+                <td>Flag</td>
+                <td>Date_Flagged</td>
+           </tr>
+           </thead>
+            <tbody>
             <?php
                 // create variable names
             @ $name = $_POST['LocName'];
@@ -174,110 +192,218 @@
                     if(isset($_POST['filter']))
                     {
 
-                        if(($name === 'POI LOCATION NAME')&&($city === 'CITY')&&($state === 'STATE')&&($zip =='')&&($check =='')&&($sDate== '')&&($eDate ==''))
+                        if((!$name)&&(!$city)&&(!$state)&&(!$zip)&&(!$check)&&(!$sDate)&&(!$eDate))
                         {
-                            $print_str="<p>Please Select.</p>";
-                            echo $print_str="<p> ZEROZERO.</p>";
+                            echo $print_str="<p>Please Select.</p>";
                         }
                         else
                         {
-                            echo $print_str="<p> ONE.</p>";
-                            $result = $db->query("SELECT * poi WHERE Name = $name or City = $city or State = $state or Zip_Code = $zip or Flag = $check or Date_Flagged >= $sDate and Date_Flagged <= $eDate"); 
-                            $num_results_loc = $result->num_rows;   
+                            if(($name)&&($city)&&($state)&&($zip)&&($check)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and `State` = '$state' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0') and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+                            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            elseif(($city)&&($state)&&($zip)&&($check)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and `State` = '$state' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0') and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
 
+                            elseif(($name)&&($state)&&($zip)&&($check)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `State` = '$state' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0') and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
+                            elseif(($name)&&($city)&&($zip)&&($check)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0') and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
+                            elseif(($name)&&($city)&&($state)&&($zip)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and `State` = '$state' and and `Zip_Code` = '$zip' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+                            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+                            elseif(($name)&&($city)&&($state)&&($zip)&&($check))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and `State` = '$state' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0'))");
+
+                            elseif(($name)&&($state)&&($check)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `State` = '$state' and (`Flag` = '$check' and `Flag` != '0') and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
+                            elseif(($name)&&($zip)&&($check)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0') and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
+                            elseif(($state)&&($zip)&&($check)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`State` = '$state' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0') and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
+                            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            elseif(($city)&&($state)&&($zip)&&($check))
+                                $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and `State` = '$state' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0'))");
+                           
+                            elseif(($name)&&($city)&&($state)&&($zip))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and `State` = '$state' and `Zip_Code` = '$zip'))");
+
+                            elseif(($name)&&($city)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
+                            elseif(($check)&&($city)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE ((`Flag` = '$check' and `Flag` != '0') and `City` = '$city' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                            elseif(($check)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE ((`Flag` = '$check' and `Flag` != '0') and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate')) ");
+
+                            elseif(($name)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate')) ");
+
+                            elseif(($name)&&($city)&&($state))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and `State` = '$state')");
+
+                            elseif(($name)&&($city)&&($check))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and (`Flag` = '$check' and `Flag` != '0'))");
+
+                            elseif(($state)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`State` = '$state' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate')) "); 
+                            elseif(($state)&&($zip)&&($check))
+                                $result = $db->query("SELECT * From `poi` WHERE (`State` = '$state' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0'))");
+
+                            elseif(($city)&&($zip)&&($check))
+                                $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0'))");
+
+                            elseif(($city)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate')) ");
+
+                            elseif(($city)&&($state)&&($zip))
+                                $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and `State` = '$state' and `Zip_Code` = '$zip'))");
+
+                            elseif(($city)&&($state)&&($check))
+                                $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and `State` = '$state' and (`Flag` = '$check' and `Flag` != '0'))");
+
+                            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                            elseif(($name)&&($city))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city')"); 
+                            
+                            elseif(($name)&&($state))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `State` = '$state')"); 
+
+                            elseif(($name)&&($zip))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `Zip_Code` = '$zip')"); 
+
+                            elseif(($name)&&($check))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `Flag` = '$check' and `Flag` != '0')"); 
+
+                            elseif(($city)&&($state))
+                                $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and `State` = '$state')"); 
+
+                             elseif(($city)&&($zip))
+                                $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and `Zip_Code` = '$zip')"); 
+
+                            elseif(($city)&&($check))
+                                $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and (`Flag` = '$check' and `Flag` != '0'))"); 
+
+                            elseif(($state)&&($zip))
+                                $result = $db->query("SELECT * From `poi` WHERE (`State` = '$state' and `Zip_Code` = '$zip')"); 
+
+                            elseif(($state)&&($check))
+                                $result = $db->query("SELECT * From `poi` WHERE (`State` = '$state' and (`Flag` = '$check' and `Flag` != '0'))"); 
+
+                            elseif(($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate')");
+                            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                            elseif($name)
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name')"); 
+                            
+                            elseif($city)
+                                $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city')"); 
+
+                            elseif($state)
+                                $result = $db->query("SELECT * From `poi` WHERE (`State` = '$state')");
+                            
+                            elseif($zip)
+                                $result = $db->query("SELECT * From `poi` WHERE (`Zip_Code` = '$zip')"); 
+                            
+                            elseif($check)
+                                $result = $db->query("SELECT * From `poi` WHERE (`Flag` = '$check' and `Flag` != '0')"); 
+                            
+
+                            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            $num_results_loc = $result->num_rows;   
+                            
                             for($i = 0; $i <$num_results_loc; $i++)
                             {
-                                $row = $result->fetch_assoc();                                
-                                 echo "<table class='table table-striped'>";  
+                                $row = mysqli_fetch_array($result,MYSQLI_ASSOC); 
+                                $name = $row['Name'];
+                                $city =$row['City'];
+                                $state =$row['State'];
+                                $zip =$row['Zip_Code'];
+                                $check =$row['Flag'];
+                                $df=$row['Date_Flagged'];  
+                           
+                                   
                                  echo         "<thead>";
                                  echo         "</tr>";
+
                                  echo               "<th>$name</th>";
                                  echo               "<th>$city</th>";
                                  echo               "<th>$state</th>";
                                  echo               "<th>$zip</th>";
                                  echo               "<th>$check</th>";
-                                 echo               "<th>$result[Date_Flagged]</th>";
+                                 echo               "<th>$df</th>";
                                  echo           "</tr>";
                                  echo           "</thead>";
-                                 echo      "</tbody>";
+                                
                                       
                             }
                         }    
                     }
-                }     
-            ?>
-                    
-
-            <form action = "viewPOI1111.php" method = "post" id="form-main">
-            <div class="text-left">
-                <button type = "submit" name = "reset" form = "form-main" class="btn btn-indigo" >Reset Filter </button>
-            </div>
-            </form>
-            <?php
-                // create variable names
-           
-
-            if(!get_magic_quotes_gpc())
-            {
-                $name = addslashes($name);
-                $city = addslashes($city);
-                $state = addslashes($state);
-            }
-
-            @   $db = new mysqli('localhost','root','password','cs4400');
-                $connected = !mysqli_connect_errno();
-                if($connected)
-                {
-                    if(isset($_POST['reset']))
-                    { 
+                    else
+                    {
                         $result = $db->query("SELECT `Name`, `City`, `State`, `Zip_Code`, `Flag`, `Date_Flagged` FROM `poi`");
                         $num_results_loc = $result->num_rows;
-
-                        if(!$result)
-                        {
-                            $print_str="<p>Query Failed.</p>";
-                        }
-                         
-                        else
-                        {      
+     
                             for($i = 0; $i <$num_results_loc; $i++)
                             {
                                 $row = $result->fetch_assoc();
-                                $n = $row['Name'];
-                                $c =$row['City'];
-                                $s =$row['State'];
-                                $z =$row['Zip_Code'];
-                                $f =$row['Flag'];
+                                $name = $row['Name'];
+                                $city =$row['City'];
+                                $state =$row['State'];
+                                $zip =$row['Zip_Code'];
+                                $check =$row['Flag'];
                                 $df=$row['Date_Flagged'];
-                                // echo "<table class='table table-striped'>";
-                                echo "<table class='table table-striped'>";  
-                                echo         "<thead>";
-                                echo         "</tr>";
-                                echo               "<th>$n</th>";
-                                echo               "<th>$c</th>";
-                                echo               "<th>$s</th>";
-                                echo               "<th>$z</th>";
-                                echo               "<th>$f</th>";
+                                // echo "<table class='table table-striped'>"; 
+                                /*echo            "<tr>";
+                                echo               "<th>$name</th>";
+                                echo               "<th>$city</th>";
+                                echo               "<th>$state</th>";
+                                echo               "<th>$zip</th>";
+                                echo               "<th>$check</th>";
                                 echo               "<th>$df</th>";
-                                echo           "</tr>";
-                                echo           "</thead>";
-                                echo      "</tbody>";
+                                echo           "</tr>";*/
+            
+                                    echo "<tr>" ;
+                                    echo "<td> <a href='http://localhost/Group-66-CS-4400-Database-Spring-2017/CS%204400%20Project%20Main%20Folder/blank.php?x=$name'>$name</a></td>";
+                                    ?>
+                                    <td><center><Strong><?php echo $city; ?></Strong></center></td>
+                                    <td><center><Strong><?php echo $state; ?></Strong></center></td>
+                                    <td><center><Strong><?php echo $zip; ?></Strong></center></td>
+                                    <td><center><Strong><?php echo $check; ?></Strong></center></td>
+                                    <td><center><Strong><?php echo $df; ?></Strong></center></td>
+                                    </tr>
+
+            <?php
                             }
-                        }      
+
+                             
                     }
-                }      
+
+
+                }     
             ?>
-			
-        </div>
-	   </div>
-        
+            </tbody>
 
-
+		<form action = "http://localhost/Group-66-CS-4400-Database-Spring-2017/CS%204400%20Project%20Main%20Folder/choose_functionality_city_official%202.1.html"      method = "post";>
         <div class="text-center">
-            <button class="btn btn-indigo href=" choose_functionality_city_official%202.1.html"> </a>Back</button>
+            <button class="btn btn-indigo">  <a href="choose_functionality_city_official%202.1.html"> Back</a></button>
         </div>
+        </form>
+    </div>
+    </div>
 
 </div>
+
 
 <!--/Form with header-->
 
@@ -298,7 +424,17 @@
     <script type="text/javascript" src="./js/bootstrap-material-datetimepicker.js"></script>
     <script type="text/javascript">
       $('#date-format1,#date-format2').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
+
+     
+      *$('table.table tr').click(function yourEvent(){
+            window.location.href = $(this).data("http://localhost/Group-66-CS-4400-Database-Spring-2017/CS%204400%20Project%20Main%20Folder/POI_detail.html")
+      ;});*/
+
+    
+       
+
     </script>
+
   
 
 </body>

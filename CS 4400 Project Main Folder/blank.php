@@ -22,7 +22,10 @@
 
 <body>
 
+<?php 
 
+    echo $_GET['x'];
+?>
     <!-- /Start your project here-->
 	
 
