@@ -23,7 +23,7 @@
 
 </head>
 
-<body style="padding: 50px 390px 50px 390px; position: fixed;">
+<body style="width: 50%; margin:auto; padding-top:2cm;">
 
         <!-- Make data pending -->
          <!-- Form with header-->
@@ -36,7 +36,7 @@
         </div>
 
         <!--Body-->
-        <form action="http://localhost:8888/add_data.php" method="post">
+        <form action="add_data.php" method="post">
         <div>
             <span>POI location name:</span>
             <!--<select name="location_name"> -->
@@ -46,7 +46,7 @@
             
 			
             <?php
-            	$mysqli = new mysqli("localhost", "root", "password", "CS4400");
+            	$mysqli = new mysqli("localhost", "root", "password", "cs4400");
             	$result = $mysqli->query("SELECT `Name` FROM `POI` WHERE `Flag`=1");
             	if ($result) {
 			    	echo '<select name="location_name" class="mdb-select">';
@@ -82,7 +82,7 @@
         <div class="flex-container">
             <div class="flex-item">Time and date of reading:</div>
             <div class="flex-item-cal">
-            <div class="row" style="margin-right: -160px; margin-left: -70px;">
+            <div class="row" style="width: 10cm;">
                 <div class="col-md-6">
                     <div class="form-control-wrapper">
                         <input type="text" id="date-format" class="form-control floating-label" placeholder=" / /  " name="date_time">
@@ -91,10 +91,10 @@
            </div>
            </div>
            <div class="flex-item-icons">
-            <img src="calendericon.png" alt="Calender" style="width:50px;height:50px;">
+            <img src="img/calendericon.png" alt="Calender" style="width:60px;height:50px;">
            </div>
            <div class="flex-item-icons">
-            <img src="clockicon.png" alt="Tick tock" style="width:50px;height:50px;">
+            <img src="img/clockicon.png" alt="Tick tock" style="width:60px;height:50px;">
            </div>
         </div>
 
@@ -110,9 +110,11 @@
           <div style="clear:both"></div>
         </div>
 
-        <div class="flex-container">
-            <span class="flex-item">Data value:</span>
-            <block style="margin-top: 25px; margin-left: -280px;" id="datavalue"><input type="text" name="data_value"></block>
+        </br>
+
+        <div class="md-form">
+            <input id="datavalu" type="text" name="data_value">
+            <label for="datavalu">Enter Data Value</label>
         </div>
 
         <!--Footer-->
@@ -147,7 +149,7 @@
 	        $date_time = addslashes($date_time);    
 	        $data_type = addslashes($data_type); 
 	        $data_value = doubleval($data_value);
-            $db = new mysqli("localhost","root","password","CS4400");
+            $db = new mysqli("localhost","root","password","cs4400");
 
 		    if ($db->connect_errno) {
 		        echo 'Error: Could not connect to database. Please try again later.';
