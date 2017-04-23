@@ -47,7 +47,7 @@
 			
             <?php
             	$mysqli = new mysqli("localhost", "root", "password", "cs4400");
-            	$result = $mysqli->query("SELECT `Name` FROM `POI` WHERE `Flag`=1");
+            	$result = $mysqli->query("SELECT `Name` FROM `POI`");
             	if ($result) {
 			    	echo '<select name="location_name" class="mdb-select">';
 			    	echo '<option value="" disabled selected>Choose location</option>';
@@ -76,7 +76,7 @@
             </select>
             </select>-->
              </block>
-            <a href="http://www.sony.com"><u>add a new location</u></a>
+            <a href="newPOIloc.php" name="add-data"><u>add a new location</u></a>
         </div>
 
         <div class="flex-container">
@@ -101,11 +101,31 @@
         <div>
            <span>Data type</span>
            <block class="dropdown">
-            <select name="data_type">
-            <option value="" disabled selected>Choose data type</option>
-            <option type="text" value="Mold">Mold</option>
-            <option type="text" value="Air Quality">Air Quality</option>
-            </select>
+			<?php
+            	$mysqli = new mysqli("localhost", "root", "password", "cs4400");
+            	$result = $mysqli->query("SELECT `Data_Type` FROM `data_type`");
+            	if ($result) {
+			    	echo '<select name="data_type">';
+			    	echo '<option value="" disabled selected>Choose data type</option>';
+				    for($i=0;$i<$result->num_rows;$i++)
+				    {
+				    	$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+				    	//unset($id, $name);
+		                $name = $row["Data_Type"];
+                  		echo "<option> $name </option>";
+				    }
+				    /* free result set */
+				    //echo '</select>';
+				    $result->close();
+				    echo '</select>';
+				}
+				else
+				{
+					printf("Hello?\n");
+				}
+
+				$mysqli->close();
+            ?>
           </block>
           <div style="clear:both"></div>
         </div>
@@ -131,24 +151,26 @@
 
        <?php
         
-        $submit = $_POST['submit']; 
-       	$location_name = $_POST['location_name'];
-        $date_time =$_POST['date_time'];    
-        $data_type = $_POST['data_type']; 
-        $data_value = $_POST['data_value'];
-        /*echo $location_name.' is the location<br />';
-        echo $date_time.' is the date and time<br />';
-        echo $data_type.' is the data type<br />';
-        echo $data_value.' is the data value<br />';
-        echo "<p>Testing</p>";*/
+        @$submit = $_POST['submit']; 
+       	@$location_name = $_POST['location_name'];
+        @$date_time =$_POST['date_time'];    
+        @$data_type = $_POST['data_type']; 
+        @$data_value = $_POST['data_value'];
+		$date_time = $date_time.":00";
+		
+		if(!get_magic_quotes_gpc())
+		{
+			$location_name = addslashes($location_name); 
+			$date_time = addslashes($date_time);
+			$data_type = addslashes($data_type); 
+			$data_value = addslashes($data_value);
+		}
+		
+		
         if(($submit)&(($location_name == NULL)|($date_time == NULL)|($data_type == NULL)|($data_value == NULL)))
             echo 'Error Missing Entry';
         if(($submit)&($location_name)&($date_time)&($data_type)&($data_value))
         {
-        	$location_name = addslashes($location_name); 
-	        $date_time = addslashes($date_time);    
-	        $data_type = addslashes($data_type); 
-	        $data_value = doubleval($data_value);
             $db = new mysqli("localhost","root","password","cs4400");
 
 		    if ($db->connect_errno) {
@@ -158,7 +180,7 @@
 
 		    //INSERT INTO `data_point` (`Location_Name`, `Date_Recorded`, `Data_value`, `Data_type`, `Accepted`) VALUES ('Georgia Tech', '1/25/2018 0:00', '1', 'Mold', '1')
 
-            $q1 = "INSERT INTO `data_point`(`Location_Name`, `Date_Recorded`, `Data_value`, `Data_type`,`Accepted`) VALUES ('$location_name', '$date_time', '$data_value', '$data_type','0')";
+            $q1 = "INSERT INTO `cs4400`.`data_point`(`Name`, `Date_Recorded`, `Data_Value`, `Data_Type`,`Accepted`) VALUES ('".$location_name."', '".$date_time."', '".$data_value."', '".$data_type."','2')";
 
             $result = $db->query($q1);
 
@@ -172,7 +194,7 @@
                 echo 'Done. Thanks my dude';
                 echo '<meta http-equiv="refresh" content="5">';
             }
-            $result->close();
+            //$result->close();
             $db->close();
         }
 
@@ -198,7 +220,7 @@
     <script type="text/javascript" src="./js/bootstrap-material-datetimepicker.js"></script>
    <!-- <script type="text/javascript" src="./js/datescript.js"></script>-->
     <script type="text/javascript">
-        $('#date-format').bootstrapMaterialDatePicker({ format : 'MM/DD/YYYY  HH:mm' });
+        $('#date-format').bootstrapMaterialDatePicker({ format : 'YYYY-DD-MM HH:mm' });
     </script>
     <script type="text/javascript">
         // Material Select Initialization

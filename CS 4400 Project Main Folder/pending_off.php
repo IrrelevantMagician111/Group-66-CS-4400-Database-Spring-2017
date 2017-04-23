@@ -52,19 +52,19 @@
                 echo "<link href='css/MP.mdb.min.css' rel='stylesheet' type='text/css' />";
                 //Enter php here
                 $mysqli = new mysqli("localhost", "root", "password", "CS4400");
-                if ($db->connect_errno) {
+                if ($mysqli->connect_errno) {
                     echo 'Error: Could not connect to database. Please try again later.';
                     exit; 
                 }
                 //$testbox = [];
                 $result = $mysqli->query("SELECT * FROM `City_Official` WHERE `Approved`=2");
-                $result3 = $mysqli->query("SELECT `Email_Address` FROM `Users` WHERE `Username` = SOME (SELECT `Username` FROM `City_Official` WHERE `Approved`=2)");
+                $result3 = $mysqli->query("SELECT `Email_Address` FROM `User` WHERE `Username` = SOME (SELECT `Username` FROM `City_Official` WHERE `Approved`=2)");
                 $send = 5;
                 if($result){
                     //$checked[$result->num_rows]={0};
                     for($i=0;$i<$result->num_rows;$i++){ 
                         $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
-                        $row3=mysqli_fetch_array($result3,MYSQLI_ASSOC);
+                        @$row3=mysqli_fetch_array($result3,MYSQLI_ASSOC);
                         $email=$row3["Email_Address"];
                         $name = $row["Username"];
                         $title = $row["Title"];
@@ -117,9 +117,9 @@
     </div>
 
     <?php
-        $reject = $_POST['reject'];
-        $accept = $_POST['accept'];
-        $test = $_POST['testbox'];
+        @$reject = $_POST['reject'];
+        @$accept = $_POST['accept'];
+        @$test = $_POST['testbox'];
         //Do two different things depending on reject or accept
         if(($reject)&(!$accept)){ //If rejected
             //echo "Well damn";

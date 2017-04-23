@@ -53,13 +53,13 @@
         <!-- Password -->
         <div class="flex-container">
             <span class="flex-item">Password</span>
-            <block style="margin-top: 25px; margin-left: -40px;" id="datavalue"><input type="text" name="password"></block>
+            <block style="margin-top: 25px; margin-left: -40px;" id="datavalue"><input type="password" name="password"></block>
         </div>
 
         <!-- Confirm Password -->
         <div class="flex-container">
             <span class="flex-item">Confirm Password</span>
-            <block style="margin-top: 25px; margin-left: -40px;" id="datavalue"><input type="text" name="confirm_password"></block>
+            <block style="margin-top: 25px; margin-left: -40px;" id="datavalue"><input type="password" name="confirm_password"></block>
         </div>
 		
 		<script>
@@ -183,6 +183,17 @@
         @$state = $_POST['state'];
         @$title = $_POST['title'];
         @$box = "City_Official";
+		if(!get_magic_quotes_gpc())
+		{
+			$username = addslashes($username);
+	        $email_address =addslashes($email_address);    
+	        $password = addslashes($password); 
+	        $confirm_password = addslashes($confirm_password);
+	        $user_type = addslashes($user_type);
+	        $city = addslashes($city);
+	        $state = addslashes($state);
+	        $title = addslashes($title);
+		}
 
         if(($submit)&((!$username)|(!$email_address)|(!$password)|(!$confirm_password)|(!$user_type)))
         {
@@ -193,14 +204,6 @@
 
         if(($submit)&($username)&($email_address)&($password)&($confirm_password)&($user_type))
         { 
-	       	$username = addslashes($username);
-	        $email_address =addslashes($email_address);    
-	        $password = addslashes($password); 
-	        $confirm_password = addslashes($confirm_password);
-	        $user_type = addslashes($user_type);
-	        $city = addslashes($city);
-	        $state = addslashes($state);
-	        $title = addslashes($title);
 	        /*Check password match*/
 	    	if($password!=$confirm_password)
 	    		echo '<script type="text/javascript">alert("Error: Passwords do not match");</script>';
@@ -243,10 +246,7 @@
 			            else
 			            {
 			               // echo '<script type="text/javascript">alert("Done: Thanks my dude");</script>';
-			              ob_start();
-							header('Location: login.html');
-						  ob_end_flush();
-							die();
+			              echo '<script type="text/javascript">window.location="login.html"</script>';
 			            }
 		        	}
 		        }
@@ -259,7 +259,7 @@
 				        exit; 
 				    }
 				    /* Special City Oficial Case*/
-		            $q1 = "INSERT INTO `Users`(`Username`, `Email_Address`, `Password`, `User_type`) VALUES ('$username', '$email_address', '$password', '$user_type')";
+		            $q1 = "INSERT INTO `User`(`Username`, `Email_Address`, `Password`, `User_Type`) VALUES ('".$username."', '".$email_address."', '".$password."', '".$user_type."')";
 		            $result = $db->query($q1);
 		            if(!$result)
 		            {
@@ -269,42 +269,12 @@
 		            else
 		            {
 		                //echo '<script type="text/javascript">alert("Done: Thanks my dude");</script>';
-		                ob_start();
-						header('Location: login.html');
-						ob_end_flush();
-						die();
+		                echo '<script type="text/javascript">window.location="login.html"</script>';
 
 		            }
 		        }
 
-	            //If it was a city official
-	            /* If city official is selected make sure bottom is filled
-		        if($user_type==$box)
-		        	if((!$city)|(!$state)|(!$title))
-			        {
-			        	exit;
-			        	echo '<script type="text/javascript">alert("Error: Missing Info for city official");</script>';
-			        	echo '<meta http-equiv="refresh" content="1">';
-			        }
-			        else
-			        {
-			        	$q2 = "INSERT INTO `City_Official`(`Username`, `Title`, `Approved`, `City`,`State`) VALUES ('$username', '$title', 2, '$city', 'state')";
-			        	$result2 = $db->query($q2);
-			        	if(!$result2)
-			            {
-			                echo '<script type="text/javascript">alert("Error: Database fail");</script>';
-			                exit;
-			            }
-			            else
-			            {
-			                echo '<script type="text/javascript">alert("Done: Domo my dude");</script>';
-			                echo '<meta http-equiv="refresh" content="5">';
-			            }
-		        }
-		        /*************************************************************/
-	            $result->close();
-	            $result->close();
-	            $db->close();
+	            
 	        }
         }
 

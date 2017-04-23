@@ -106,7 +106,7 @@
 			</div>
 
 			<div class="text-left">
-				<button class="btn btn-indigo">Back</button>
+				<a class="btn btn-indigo" href="add_data.php">Back</a>
 				<button type="submit" class="btn btn-indigo">Submit</button>
 			</div>
 		</form>
