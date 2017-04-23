@@ -2,19 +2,33 @@
 <?php 
 	@   $db = new mysqli('localhost','root','password','cs4400');
 		$connected = !mysqli_connect_errno();
-		@$change_flag = $_POST['change_flag'];
-		echo "<p>".$change_flag."</p>";
-		$name = $_GET['name'];
+		@$name = $_GET['name'];
 		@$data_type = $_POST['data_type'];
 		@$data_min = $_POST['min'];
 		@$data_max = $_POST['max'];
 		@$end_date = $_POST['end'];
 		@$begin_date = $_POST['begin'];
+		
+		if(!get_magic_quotes_gpc())
+		{
+			$name = addslashes($name);
+			$data_type = addslashes($data_type);
+			$data_min = addslashes($data_min);
+			$data_max = addslashes($data_max);
+			$end_date = addslashes($end_date);
+			$begin_date = addslashes($begin_date);
+		}
+		
 		$improper_filter_data = (strlen($data_min)&&!strlen($data_max))||(!strlen($data_min)&&!strlen($data_max));
 		$improper_filter_date = (strlen($end_date)&&!strlen($begin_date))||(!strlen($end_date)&&strlen($begin_date));
 		$filter_data = strlen($data_min)&&strlen($data_max);
 		$filter_date = strlen($end_date)&&strlen($begin_date);
 		$filter_data_type = strlen($data_type);
+		
+		if(!get_magic_quotes_gpc())
+		{
+			
+		}
 ?>
 <html lang="en">
 
@@ -61,6 +75,20 @@
     <!-- /Start your project here-->
 	
 	<!--Form without header-->
+	<?php 
+		$query = "SELECT `Flag` FROM `poi` WHERE `Name` = '".$name."'";
+		$results = $db->query($query);
+		$row = $results->fetch_assoc();
+		$row['Flag'] = (int)$row['Flag'];
+		if($row['Flag'])
+		{
+			echo '<div style="display: flex;justify-content: flex-end"> 
+					<p></p>
+					<h1><i class="fa fa-flag-o" aria-hidden="true" ></i></h1>
+				</div>';
+		}
+	?>
+	
 	<div class="center-container">
 		<div class="card">
 			<div class="card-block">
