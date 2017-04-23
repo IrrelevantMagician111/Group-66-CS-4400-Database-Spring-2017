@@ -223,6 +223,9 @@
                             elseif(($name)&&($city)&&($zip)&&($check)&&($sDate)&&($eDate))
                                 $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0') and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
 
+                            elseif(($name)&&($city)&&($state)&&($check)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and `State` = '$state' and (`Flag` = '$check' and `Flag` != '0') and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
                             elseif(($name)&&($city)&&($state)&&($zip)&&($sDate)&&($eDate))
                                 $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and `State` = '$state' and and `Zip_Code` = '$zip' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
                             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -234,24 +237,66 @@
                             elseif(($name)&&($state)&&($check)&&($sDate)&&($eDate))
                                 $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `State` = '$state' and (`Flag` = '$check' and `Flag` != '0') and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
 
+                            elseif(($name)&&($city)&&($check)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and (`Flag` = '$check' and `Flag` != '0') and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
+                            elseif(($name)&&($zip)&&($state)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `Zip_Code` = '$zip' and (`State` = '$state' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
+                            elseif(($name)&&($city)&&($state)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and (`State` = '$state' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
                             elseif(($name)&&($zip)&&($check)&&($sDate)&&($eDate))
                                 $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0') and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
 
                             elseif(($state)&&($zip)&&($check)&&($sDate)&&($eDate))
                                 $result = $db->query("SELECT * From `poi` WHERE (`State` = '$state' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0') and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
 
+                            elseif(($state)&&($city)&&($check)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`State` = '$state' and `City` = '$city' and (`Flag` = '$check' and `Flag` != '0') and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
                             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             elseif(($city)&&($state)&&($zip)&&($check))
                                 $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and `State` = '$state' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0'))");
+
+                            elseif(($name)&&($state)&&($zip)&&($check))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `State` = '$state' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0'))");
+
+                            elseif(($city)&&($state)&&($name)&&($check))
+                                $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and `State` = '$state' and `name` = '$name' and (`Flag` = '$check' and `Flag` != '0'))");
+
+                            elseif(($city)&&($zip)&&($name)&&($check))
+                                $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and `Zip_Code` = '$zip' and `name` = '$name' and (`Flag` = '$check' and `Flag` != '0'))");
                            
                             elseif(($name)&&($city)&&($state)&&($zip))
                                 $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and `State` = '$state' and `Zip_Code` = '$zip'))");
 
+                             elseif(($name)&&($state)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `State` = '$state' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
+                            elseif(($city)&&($state)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and `State` = '$state' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
                             elseif(($name)&&($city)&&($sDate)&&($eDate))
                                 $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
 
+                            elseif(($name)&&($zip)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `Zip_Code` = '$zip' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
+                            elseif(($city)&&($zip)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and `Zip_Code` = '$zip' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
                             elseif(($check)&&($city)&&($sDate)&&($eDate))
                                 $result = $db->query("SELECT * From `poi` WHERE ((`Flag` = '$check' and `Flag` != '0') and `City` = '$city' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
+                            elseif(($check)&&($name)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE ((`Flag` = '$check' and `Flag` != '0') and `Name` = '$name' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
+                            elseif(($check)&&($zip)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE ((`Flag` = '$check' and `Flag` != '0') and `Zip_Code` = '$zip' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
+
+                            elseif(($check)&&($state)&&($sDate)&&($eDate))
+                                $result = $db->query("SELECT * From `poi` WHERE ((`Flag` = '$check' and `Flag` != '0') and `State` = '$state' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate'))");
                             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                             elseif(($check)&&($sDate)&&($eDate))
@@ -262,6 +307,9 @@
 
                             elseif(($name)&&($city)&&($state))
                                 $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and `State` = '$state')");
+
+                            elseif(($name)&&($city)&&($zip))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and `Zip_Code` = '$zip')");
 
                             elseif(($name)&&($city)&&($check))
                                 $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `City` = '$city' and (`Flag` = '$check' and `Flag` != '0'))");
@@ -274,14 +322,23 @@
                             elseif(($city)&&($zip)&&($check))
                                 $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0'))");
 
+                            elseif(($name)&&($zip)&&($check))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `Zip_Code` = '$zip' and (`Flag` = '$check' and `Flag` != '0'))");
+
                             elseif(($city)&&($sDate)&&($eDate))
                                 $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and (`Date_Flagged` >= '$sDate' and `Date_Flagged` <= '$eDate')) ");
 
                             elseif(($city)&&($state)&&($zip))
                                 $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and `State` = '$state' and `Zip_Code` = '$zip'))");
 
+                            elseif(($name)&&($state)&&($zip))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `State` = '$state' and `Zip_Code` = '$zip'))");
+
                             elseif(($city)&&($state)&&($check))
                                 $result = $db->query("SELECT * From `poi` WHERE (`City` = '$city' and `State` = '$state' and (`Flag` = '$check' and `Flag` != '0'))");
+
+                            elseif(($name)&&($state)&&($check))
+                                $result = $db->query("SELECT * From `poi` WHERE (`Name` = '$name' and `State` = '$state' and (`Flag` = '$check' and `Flag` != '0'))");
 
                             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -346,7 +403,7 @@
                                 $df=$row['Date_Flagged'];  
                            
                                    
-                                 echo         "<thead>";
+                                /* echo         "<thead>";
                                  echo         "</tr>";
 
                                  echo               "<th>$name</th>";
@@ -356,7 +413,19 @@
                                  echo               "<th>$check</th>";
                                  echo               "<th>$df</th>";
                                  echo           "</tr>";
-                                 echo           "</thead>";
+                                 echo           "</thead>";*/
+
+                                 echo "<tr>" ;
+                                echo "<td> <a href='http://localhost/Group-66-CS-4400-Database-Spring-2017/CS%204400%20Project%20Main%20Folder/blank.php?name=$name'>$name</a></td>";
+                                ?>
+                                <td><center><Strong><?php echo $city; ?></Strong></center></td>
+                                <td><center><Strong><?php echo $state; ?></Strong></center></td>
+                                <td><center><Strong><?php echo $zip; ?></Strong></center></td>
+                                <td><center><Strong><?php echo $check; ?></Strong></center></td>
+                                <td><center><Strong><?php echo $df; ?></Strong></center></td>
+                                </tr>
+
+            <?php
                                 
                                       
                             }
