@@ -2,7 +2,7 @@
 <html lang="en">
 <?php 
 	@$flag_name = $_GET['name'];
-	echo "<p>".$flag_name."</p>";
+	//echo "<p>".$flag_name."</p>";
 	if (strlen($flag_name))
 	{
 		if(!get_magic_quotes_gpc())
@@ -17,10 +17,10 @@
 			$result = $db->query($query_read);
 			$row = $result->fetch_assoc();
 			$current_flag = (int)$row['Flag'];
-			echo "<p>".$current_flag."</p>";
+			//echo "<p>".$current_flag."</p>";
 			date_default_timezone_set('America/New_York');
 			$date_flagged = date('Y-m-d');
-			echo "<p>".$date_flagged."</p>";
+			//echo "<p>".$date_flagged."</p>";
 			if($current_flag)
 			{
 				$query_write = "UPDATE `poi` SET `Flag` = 0, `Date_Flagged` = '".$date_flagged."' WHERE `Name` = '".$flag_name."'";
@@ -32,7 +32,7 @@
 				$current_flag = 1;
 			}
 			$result = $db->query($query_write);
-			echo "<p>".$current_flag."</p>";
+			//echo "<p>".$current_flag."</p>";
 		}
 	}
 ?>
@@ -40,7 +40,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Insert Page Name</title>
+    <title>View POIs</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
@@ -48,7 +48,7 @@
     <!-- Material Design Bootstrap -->
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
-    <link href="css/login_style.css" rel="stylesheet">
+    <link href="css/style_login.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
@@ -154,14 +154,14 @@
 			<div class="md-form">
 			  <div class="form-control-wrapper">
 				<input name = "sDate" placeholder="" type="text" id="date-format1" class="form-control floating-label">
-				<label for="date-format1">dd/mm/yyyy</label>
+				<label for="date-format1">Begin Date Flagged</label>
 			  </div>
 			</div>
 
 			<div class="md-form">
 			  <div class="form-control-wrapper">
 				<input name = "eDate" placeholder="" type="text" id="date-format2" class="form-control floating-label">
-				<label for="date-format2">dd/mm/yyyy</label>
+				<label for="date-format2">End Date Flagged</label>
 			  </div>
 			</div>
 			
@@ -483,9 +483,9 @@
                 }     
             ?>
             </tbody>
-		<form action = "http://localhost/Group-66-CS-4400-Database-Spring-2017/CS%204400%20Project%20Main%20Folder/choose_functionality_city_official%202.1.html"      method = "post";>
+		
         <div class="text-center">
-            <button class="btn btn-indigo">  <a href="choose_functionality_city_official%202.1.html"> Back</a></button>
+            <a class="btn btn-indigo" href="http://localhost/cs%204400%20project%20main%20folder/choose_functionality_city_official%202.1.html">Back</a>
         </div>
         </form>
     </div>

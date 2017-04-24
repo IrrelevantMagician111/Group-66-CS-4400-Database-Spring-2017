@@ -1,5 +1,52 @@
 <html>
+<?php
+        
+        @$submit = $_POST['submit']; 
+       	@$location_name = $_POST['location_name'];
+        @$date_time =$_POST['date_time'];    
+        @$data_type = $_POST['data_type']; 
+        @$data_value = $_POST['data_value'];
+		$date_time = $date_time.":00";
+		
+		if(!get_magic_quotes_gpc())
+		{
+			$location_name = addslashes($location_name); 
+			$date_time = addslashes($date_time);
+			$data_type = addslashes($data_type); 
+			$data_value = addslashes($data_value);
+		}
+		
+		
+        if(($submit)&(($location_name == NULL)|($date_time == NULL)|($data_type == NULL)|($data_value == NULL)))
+            echo 'Error Missing Entry';
+        if(($submit)&($location_name)&($date_time)&($data_type)&($data_value))
+        {
+            $db = new mysqli("localhost","root","password","cs4400");
 
+		    if ($db->connect_errno) {
+		        echo 'Error: Could not connect to database. Please try again later.';
+		        exit; 
+		    }
+
+		    //INSERT INTO `data_point` (`Location_Name`, `Date_Recorded`, `Data_value`, `Data_type`, `Accepted`) VALUES ('Georgia Tech', '1/25/2018 0:00', '1', 'Mold', '1')
+
+            $q1 = "INSERT INTO `cs4400`.`data_point`(`Name`, `Date_Recorded`, `Data_Value`, `Data_Type`,`Accepted`) VALUES ('".$location_name."', '".$date_time."', '".$data_value."', '".$data_type."','2')";
+            $result = $db->query($q1);
+
+            if(!$result)
+            {
+                echo 'Error: Unable to fill database';
+                exit;
+            }
+            else
+            {
+                //echo 'Done. Thanks my dude';
+            }
+            //$result->close();
+            $db->close();
+        }
+
+        ?>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -85,7 +132,7 @@
             <div class="row" style="width: 10cm;">
                 <div class="col-md-6">
                     <div class="form-control-wrapper">
-                        <input type="text" id="date-format" class="form-control floating-label" placeholder=" / /  " name="date_time">
+                        <input type="text" id="date-format" class="form-control floating-label" name="date_time">
                     </div>
                 </div>
            </div>
@@ -139,7 +186,7 @@
 
         <!--Footer-->
         <div>
-            <button type="button" class="btn btn-deep-orange"><a href="http://www.yahoo.com" style="color: #ffffff; text-decoration: none; ">back</a></button>
+            <a href="login.html" class="btn btn-deep-orange" style="color: #ffffff; text-decoration: none; ">back</a>
             <!--White-space-->
             <block id="white-space"></block>
             <!--Amber-->
@@ -149,56 +196,7 @@
     </div>
     </form>
 
-       <?php
-        
-        @$submit = $_POST['submit']; 
-       	@$location_name = $_POST['location_name'];
-        @$date_time =$_POST['date_time'];    
-        @$data_type = $_POST['data_type']; 
-        @$data_value = $_POST['data_value'];
-		$date_time = $date_time.":00";
-		
-		if(!get_magic_quotes_gpc())
-		{
-			$location_name = addslashes($location_name); 
-			$date_time = addslashes($date_time);
-			$data_type = addslashes($data_type); 
-			$data_value = addslashes($data_value);
-		}
-		
-		
-        if(($submit)&(($location_name == NULL)|($date_time == NULL)|($data_type == NULL)|($data_value == NULL)))
-            echo 'Error Missing Entry';
-        if(($submit)&($location_name)&($date_time)&($data_type)&($data_value))
-        {
-            $db = new mysqli("localhost","root","password","cs4400");
-
-		    if ($db->connect_errno) {
-		        echo 'Error: Could not connect to database. Please try again later.';
-		        exit; 
-		    }
-
-		    //INSERT INTO `data_point` (`Location_Name`, `Date_Recorded`, `Data_value`, `Data_type`, `Accepted`) VALUES ('Georgia Tech', '1/25/2018 0:00', '1', 'Mold', '1')
-
-            $q1 = "INSERT INTO `cs4400`.`data_point`(`Name`, `Date_Recorded`, `Data_Value`, `Data_Type`,`Accepted`) VALUES ('".$location_name."', '".$date_time."', '".$data_value."', '".$data_type."','2')";
-
-            $result = $db->query($q1);
-
-            if(!$result)
-            {
-                echo 'Error: Unable to fill database';
-                exit;
-            }
-            else
-            {
-                echo 'Done. Thanks my dude';
-                echo '<meta http-equiv="refresh" content="5">';
-            }
-            //$result->close();
-            $db->close();
-        }
-
-        ?>
+       
 
 
 </body>
@@ -220,7 +218,7 @@
     <script type="text/javascript" src="./js/bootstrap-material-datetimepicker.js"></script>
    <!-- <script type="text/javascript" src="./js/datescript.js"></script>-->
     <script type="text/javascript">
-        $('#date-format').bootstrapMaterialDatePicker({ format : 'YYYY-DD-MM HH:mm' });
+        $('#date-format').bootstrapMaterialDatePicker({ format : 'YYYY-MM-DD HH:mm' });
     </script>
     <script type="text/javascript">
         // Material Select Initialization

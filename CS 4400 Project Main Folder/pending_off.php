@@ -30,7 +30,7 @@
     <div class="form-header  purple darken-4">
         <h3>Pending City Official</h3>
     </div>
-    <form action="http://localhost/pending_off.php" method="post">
+    <form action="pending_off.php" method="post">
     <table class="table">
     <thead>
         <tr>
@@ -125,13 +125,14 @@
             //echo "Well damn";
             echo "</br>";
             $result = $mysqli->query("SELECT * FROM `City_Official` WHERE `Approved`=2");
-            for($i=0;$i<$results->num_rows;$i++) {
+            for($i=0;$i<$result->num_rows;$i++) {
                 $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
                 $newname = $row["Username"];
                 //echo $test[$i];
-                if($newname == $test[$i]){
+				@$value = strlen($test[$i]);
+                if($value){
                     //echo $test[$i];
-                    $result2 = $mysqli->query("UPDATE `City_Official` SET `Approved`=0 WHERE `Username`='$newname'");
+                    $result2 = $mysqli->query("UPDATE `City_Official` SET `Approved`=0 WHERE `Username`='$test[$i]'");
                     echo '<meta http-equiv="refresh" content="2">';
                 }
             }
@@ -140,13 +141,14 @@
         else if(($accept)&(!$reject)){
             echo "</br>";
             $result = $mysqli->query("SELECT * FROM `City_Official` WHERE `Approved`=2");
-            for($i=0;$i<$results->num_rows;$i++) {
+            for($i=0;$i<$result->num_rows;$i++) {
                 $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
                 $newname = $row["Username"];
                 //echo $test[$i];
-                if($newname == $test[$i]){
+				@$value = strlen($test[$i]);
+                if($value){
                     //echo $test[$i];
-                    $result2 = $mysqli->query("UPDATE `City_Official` SET `Approved`=1 WHERE `Username`='$newname'");
+                    $result2 = $mysqli->query("UPDATE `City_Official` SET `Approved`=1 WHERE `Username`='$test[$i]'");
                     echo '<meta http-equiv="refresh" content="2">';
                 }
             

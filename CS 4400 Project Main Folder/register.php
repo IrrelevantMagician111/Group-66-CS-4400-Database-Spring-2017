@@ -227,7 +227,7 @@
 					        echo '<meta http-equiv="refresh" content="1">';
 
 					    }
-					    $q1 = "INSERT INTO `Users`(`Username`, `Email_Address`, `Password`, `User_type`) VALUES ('$username', '$email_address', '$password', '$user_type')";
+					    $q1 = "INSERT INTO `User`(`Username`, `Email_Address`, `Password`, `User_type`) VALUES ('$username', '$email_address', '$password', '$user_type')";
 					    $result = $db->query($q1);
 					    if(!$result)
 			            {

@@ -189,9 +189,9 @@
 							<?php 
 								
 								$query = "SELECT `Data_Type`, `Data_Value`, `Date_Recorded` FROM `data_point` WHERE ";
-								echo "<p>Filter date is ".$filter_date."</p>";
-								echo "<p>Filter data is ".$filter_data."</p>";
-								echo "<p>Filter data type is ".$filter_data_type."</p>";
+								//echo "<p>Filter date is ".$filter_date."</p>";
+								//echo "<p>Filter data is ".$filter_data."</p>";
+								//echo "<p>Filter data type is ".$filter_data_type."</p>";
 								if($filter_date)
 								{
 									$date_array_begin = explode(" ", $begin_date);
@@ -261,7 +261,7 @@
 								$query = $query." `data_point`.`name` = '".$name."' ";
 								//$query = substr_replace($query, '', -4);
 								$query = $query."ORDER BY `Date_Recorded` DESC";
-								echo "<p>".$query."</p>";
+								//echo "<p>".$query."</p>";
 								if(!($filter_data_type||$filter_data||$filter_date)){
 									$query = "SELECT `Data_Type`, `Data_Value`, `Date_Recorded` FROM `data_point` WHERE `data_point`.`name` ='".$name."'";
 								}
